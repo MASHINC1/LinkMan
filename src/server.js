@@ -252,7 +252,7 @@ function htmlPage() {
       border-radius: 999px;
       background: linear-gradient(180deg, #302724 0%, #2a211f 100%);
       border: 1px solid #5a3b33;
-      color: #ffb8a5;
+      color: #c9978c;
       padding: 4px 9px;
       font-size: 0.78rem;
       letter-spacing: 0.02em;
@@ -281,7 +281,7 @@ function htmlPage() {
       font-size: 0.95rem;
       font-family: "Orbitron", "Space Grotesk", sans-serif;
       letter-spacing: 0.08em;
-      color: #ffb29f;
+      color: #ba8e84;
       text-transform: uppercase;
       cursor: text;
     }
@@ -375,13 +375,13 @@ function htmlPage() {
     }
 
     .link-action {
-      color: #ffcabd;
+      color: #f2f3f5;
       text-decoration: none;
       font-size: 13px;
     }
 
     .link-action:hover {
-      color: #ffdcd3;
+      color: #ffffff;
       text-decoration: underline;
       text-decoration-thickness: 1px;
     }
