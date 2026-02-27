@@ -1,0 +1,10 @@
+{
+  "name": "linkman",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private online link manager",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  }
+}
