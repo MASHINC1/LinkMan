@@ -4,7 +4,10 @@
   "private": true,
   "description": "Private online link manager",
   "scripts": {
-    "dev": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "start": "node src/server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

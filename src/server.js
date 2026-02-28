@@ -94,6 +94,45 @@ function htmlPage() {
       margin-bottom: 8px;
     }
 
+    .icon-btn {
+      border: 1px solid #5c4038;
+      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(90deg, #3a2e2a 0%, #302522 100%);
+      color: #ffd6cc;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .icon-btn svg {
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      border-color: #7c4c40;
+      box-shadow: 0 0 14px rgba(255, 69, 0, 0.2);
+    }
+
+    .icon-btn:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .icon-btn-main {
+      background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent) 100%);
+      border-color: rgba(255, 150, 121, 0.6);
+      color: #fff4f1;
+      box-shadow: 0 0 16px rgba(255, 69, 0, 0.26);
+    }
+
     .brand {
       margin-left: auto;
       display: flex;
@@ -132,6 +171,11 @@ function htmlPage() {
       text-shadow: 0 0 10px rgba(255, 69, 0, 0.35);
     }
 
+    .status-text {
+      margin: 6px 0 10px;
+      min-height: 1.2em;
+    }
+
     .card {
       background: linear-gradient(165deg, #252526 0%, #202022 100%);
       border: 1px solid var(--border);
@@ -144,8 +188,16 @@ function htmlPage() {
     .board {
       display: grid;
       grid-template-columns: repeat(4, minmax(220px, 1fr));
+      grid-auto-flow: dense;
+      grid-auto-rows: 8px;
       gap: 10px;
       align-items: start;
+    }
+
+    .board.group-drop-end {
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 1px rgba(255, 109, 74, 0.34);
+      background: rgba(255, 69, 0, 0.06);
     }
 
     label {
@@ -258,10 +310,10 @@ function htmlPage() {
       letter-spacing: 0.02em;
     }
 
-    .group-card {
-      background: linear-gradient(180deg, #272729 0%, #232325 100%);
+   .group-card {
+      background: linear-gradient(180deg, #111111 0%, #161616 100%);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
       box-shadow: var(--shadow);
       padding: 8px;
       min-height: 170px;
@@ -276,14 +328,54 @@ function htmlPage() {
       box-shadow: 0 0 18px rgba(255, 69, 0, 0.24);
     }
 
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .group-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .group-action-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border-color: #4f413e;
+      background: linear-gradient(180deg, #2f2a28 0%, #272321 100%);
+      color: #d6b0a7;
+      padding: 0;
+    }
+
+    .group-action-btn:hover {
+      border-color: #786059;
+      box-shadow: 0 0 12px rgba(255, 109, 74, 0.16);
+    }
+
+    .group-action-btn.group-delete-btn {
+      color: #f2b1a0;
+      border-color: #65413a;
+      background: linear-gradient(180deg, #372624 0%, #2f2120 100%);
+    }
+
     .group-title {
-      margin: 2px 0 8px;
+      margin: 0;
       font-size: 0.95rem;
       font-family: "Orbitron", "Space Grotesk", sans-serif;
       letter-spacing: 0.08em;
       color: #ba8e84;
       text-transform: uppercase;
       cursor: text;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .links {
@@ -292,17 +384,17 @@ function htmlPage() {
     }
 
     .link-item {
-      background: linear-gradient(180deg, #2e2e31 0%, #252527 100%);
-      border: 1px solid #474749;
-      border-radius: 4px;
-      min-height: 28px;
-      padding: 2px 4px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s, opacity 0.15s;
-      cursor: grab;
-    }
+    background: linear-gradient(180deg, #111111 0%, #111111 100%);
+    border: 1px solid #333333;
+    border-radius: 4px;
+    min-height: 28px;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s, opacity 0.15s;
+    cursor: grab;
+}
 
     .link-item:hover {
       border-color: #656568;
@@ -352,11 +444,11 @@ function htmlPage() {
     }
 
     .favicon {
-      width: 14px;
-      height: 14px;
-      border-radius: 5px;
-      background: #fff;
-      border: 1px solid #dadada;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: #ff000000;
+      border: 0px solid #dadada;
     }
 
     .link-main {
@@ -402,6 +494,127 @@ function htmlPage() {
       display: none;
     }
 
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+    }
+
+    .modal.hidden {
+      display: none;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(1.5px);
+    }
+
+    .modal-dialog {
+      position: relative;
+      width: min(460px, calc(100vw - 24px));
+      margin: 8vh auto 0;
+      background: linear-gradient(165deg, #252526 0%, #202022 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      animation: reveal 190ms ease-out;
+    }
+
+    .modal-title {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      font-family: "Orbitron", "Space Grotesk", sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e6bbb1;
+    }
+
+    .modal-hint {
+      margin: 0 0 10px;
+      font-size: 0.84rem;
+    }
+
+    .editor-preview {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+    }
+
+    .editor-preview img {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid #4a4a4d;
+      background: #1d1d1f;
+      object-fit: cover;
+    }
+
+    .editor-preview img.icon-empty {
+      opacity: 0.45;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .context-menu {
+      position: fixed;
+      z-index: 1300;
+      display: none;
+      flex-direction: column;
+      min-width: 170px;
+      padding: 6px;
+      border: 1px solid #4d4d50;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #242426 0%, #1f1f21 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .context-menu.open {
+      display: flex;
+    }
+
+    .context-menu-item {
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      color: #dfdfe1;
+      text-align: left;
+      padding: 7px 9px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .context-menu-item:hover,
+    .context-menu-item:focus-visible {
+      background: rgba(255, 109, 74, 0.14);
+      border-color: rgba(255, 109, 74, 0.34);
+      transform: none;
+      outline: none;
+    }
+
+    .context-menu-item.danger {
+      color: #ffb8aa;
+    }
+
     @media (max-width: 1280px) {
       .board { grid-template-columns: repeat(3, minmax(210px, 1fr)); }
     }
@@ -435,17 +648,7 @@ function htmlPage() {
     @media (max-width: 700px) {
       .board { grid-template-columns: 1fr; }
 
-      .category-add {
-        grid-template-columns: 1fr;
-      }
-
-      .btn-row {
-        flex-direction: column;
-      }
-
-      .btn-row button {
-        width: 100%;
-      }
+      .modal-dialog { margin-top: 4vh; }
     }
 
     @keyframes reveal {
@@ -457,7 +660,11 @@ function htmlPage() {
 <body>
   <div class="wrap" id="wrap">
     <header class="header">
-      <button id="toggleFormBtn" class="btn-main" type="button">Hinzufügen</button>
+      <button id="addGroupBtn" class="icon-btn icon-btn-main" type="button" aria-label="Neue Gruppe hinzufügen" title="Neue Gruppe">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </button>
       <div class="brand">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
           <defs>
@@ -475,47 +682,7 @@ function htmlPage() {
     </header>
 
     <main>
-      <section class="card panel-hidden" id="addPanel" style="margin-bottom: 16px;">
-        <div class="row">
-          <label for="urlInput">URL einfügen</label>
-          <input id="urlInput" type="url" placeholder="https://beispiel.de/artikel" autocomplete="off" />
-        </div>
-
-        <div class="row">
-          <label for="nameInput">Bezeichnender Name (Vorschlag möglich)</label>
-          <input id="nameInput" type="text" placeholder="Wird automatisch vorgeschlagen" autocomplete="off" />
-        </div>
-
-        <div class="row">
-          <label for="categorySelect">Kategorie</label>
-          <select id="categorySelect"></select>
-          <div class="category-add">
-            <input id="newCategoryInput" type="text" placeholder="Neue Kategorie" />
-            <button id="addCategoryBtn" class="btn-secondary" type="button">Anlegen</button>
-          </div>
-          <div id="categoryChips" class="chips"></div>
-        </div>
-
-        <div class="row">
-          <label for="imageInput">Vorschaubild URL (automatisch, optional anpassen)</label>
-          <input id="imageInput" type="url" placeholder="https://.../image.jpg" autocomplete="off" />
-        </div>
-
-        <div class="btn-row">
-          <button id="suggestBtn" class="btn-secondary" type="button">Name + Bild vorschlagen</button>
-          <button id="addLinkBtn" class="btn-main" type="button">Link hinzufügen</button>
-        </div>
-
-        <div class="row" style="margin-top: 16px;">
-          <label for="importInput">Bulk-Import (JSON-Text mit groups/sections/links)</label>
-          <textarea id="importInput" placeholder='JSON einfügen und auf "Importieren" klicken'></textarea>
-          <div class="btn-row">
-            <button id="importBtn" class="btn-secondary" type="button">Importieren</button>
-          </div>
-        </div>
-
-        <p class="muted" id="statusText" style="margin: 10px 0 0;"></p>
-      </section>
+      <p class="muted status-text" id="statusText"></p>
 
       <section>
         <div id="linksList" class="board"></div>
@@ -523,33 +690,82 @@ function htmlPage() {
     </main>
   </div>
 
+  <div id="linkEditorModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+      <h2 id="editorTitle" class="modal-title">Link hinzufügen</h2>
+      <p id="editorGroupHint" class="muted modal-hint"></p>
+
+      <div class="row">
+        <label for="editorUrlInput">URL</label>
+        <input id="editorUrlInput" type="url" placeholder="https://beispiel.de/artikel" autocomplete="off" />
+      </div>
+
+      <div class="row">
+        <label for="editorNameInput">Name</label>
+        <input id="editorNameInput" type="text" placeholder="Wird automatisch vorgeschlagen" autocomplete="off" />
+      </div>
+
+      <div class="editor-preview">
+        <span class="muted">Icon</span>
+        <img id="editorIconPreview" class="icon-empty" alt="Icon-Vorschau" />
+      </div>
+
+      <div class="modal-actions">
+        <button id="editorCancelBtn" class="btn btn-secondary" type="button">Abbrechen</button>
+        <button id="editorSaveBtn" class="btn btn-main" type="button">Speichern</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="linkContextMenu" class="context-menu" role="menu" aria-hidden="true">
+    <button id="ctxEditLinkBtn" class="context-menu-item" type="button" role="menuitem">Bearbeiten</button>
+    <button id="ctxDeleteLinkBtn" class="context-menu-item danger" type="button" role="menuitem">Löschen</button>
+  </div>
+
   <script>
     const STORAGE_KEY = 'linkman_data_v1';
+    const ICON_PLUS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+    const ICON_TRASH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M9 10v7M12 10v7M15 10v7M6.8 7l.8 12h8.8l.8-12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
     const state = {
-      categories: ['Allgemein'],
+      categories: [],
       links: [],
-      groupOrder: [],
-      addPanelOpen: false
+      groupOrder: []
+    };
+
+    const uiState = {
+      editor: {
+        open: false,
+        mode: 'create',
+        groupName: '',
+        linkId: '',
+        nameTouched: false,
+        suggestReqId: 0,
+        suggestTimer: 0
+      },
+      contextMenu: {
+        open: false,
+        linkId: ''
+      }
     };
 
     const dom = {
       wrap: document.getElementById('wrap'),
-      toggleFormBtn: document.getElementById('toggleFormBtn'),
-      addPanel: document.getElementById('addPanel'),
-      urlInput: document.getElementById('urlInput'),
-      nameInput: document.getElementById('nameInput'),
-      imageInput: document.getElementById('imageInput'),
-      categorySelect: document.getElementById('categorySelect'),
-      newCategoryInput: document.getElementById('newCategoryInput'),
-      addCategoryBtn: document.getElementById('addCategoryBtn'),
-      suggestBtn: document.getElementById('suggestBtn'),
-      addLinkBtn: document.getElementById('addLinkBtn'),
-      importInput: document.getElementById('importInput'),
-      importBtn: document.getElementById('importBtn'),
+      addGroupBtn: document.getElementById('addGroupBtn'),
       linksList: document.getElementById('linksList'),
-      categoryChips: document.getElementById('categoryChips'),
-      statusText: document.getElementById('statusText')
+      statusText: document.getElementById('statusText'),
+      linkEditorModal: document.getElementById('linkEditorModal'),
+      editorTitle: document.getElementById('editorTitle'),
+      editorGroupHint: document.getElementById('editorGroupHint'),
+      editorUrlInput: document.getElementById('editorUrlInput'),
+      editorNameInput: document.getElementById('editorNameInput'),
+      editorIconPreview: document.getElementById('editorIconPreview'),
+      editorSaveBtn: document.getElementById('editorSaveBtn'),
+      editorCancelBtn: document.getElementById('editorCancelBtn'),
+      linkContextMenu: document.getElementById('linkContextMenu'),
+      ctxEditLinkBtn: document.getElementById('ctxEditLinkBtn'),
+      ctxDeleteLinkBtn: document.getElementById('ctxDeleteLinkBtn')
     };
 
     const dragState = {
@@ -570,22 +786,35 @@ function htmlPage() {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed.categories) && parsed.categories.length) {
-          state.categories = [...new Set(parsed.categories.map(String))];
+
+        if (Array.isArray(parsed.categories)) {
+          state.categories = [...new Set(parsed.categories.map((item) => String(item).trim()).filter(Boolean))];
         }
         if (Array.isArray(parsed.groupOrder)) {
-          state.groupOrder = [...new Set(parsed.groupOrder.map((g) => String(g).trim()).filter(Boolean))];
+          state.groupOrder = [...new Set(parsed.groupOrder.map((item) => String(item).trim()).filter(Boolean))];
         }
         if (Array.isArray(parsed.links)) {
-          state.links = parsed.links.filter((item) => item && item.url).map((item) => ({
-            id: String(item.id || crypto.randomUUID()),
-            url: String(item.url),
-            name: String(item.name || item.url),
-            category: state.categories.includes(item.category) ? item.category : state.categories[0],
-            image: String(item.image || ''),
-            icon: String(item.icon || '')
-          }));
+          state.links = parsed.links
+            .filter((item) => item && item.url)
+            .map((item) => {
+              const normalized = normalizeUrl(String(item.url || ''));
+              if (!normalized) return null;
+
+              const category = String(item.category || '').trim() || 'Allgemein';
+              if (!state.categories.includes(category)) state.categories.push(category);
+
+              return {
+                id: String(item.id || crypto.randomUUID()),
+                url: normalized,
+                name: String(item.name || inferNameFromUrl(normalized)),
+                category,
+                image: String(item.image || ''),
+                icon: String(item.icon || domainIcon(normalized))
+              };
+            })
+            .filter(Boolean);
         }
+
         syncGroupOrder();
       } catch {
         // Ignore corrupt local data and start fresh.
@@ -593,12 +822,12 @@ function htmlPage() {
     }
 
     function setStatus(text, isError = false) {
-      dom.statusText.textContent = text;
+      dom.statusText.textContent = String(text || '');
       dom.statusText.style.color = isError ? '#ff9b83' : 'var(--muted)';
     }
 
     function normalizeUrl(input) {
-      const trimmed = input.trim();
+      const trimmed = String(input || '').trim();
       if (!trimmed) return null;
       try {
         return new URL(trimmed).toString();
@@ -615,48 +844,31 @@ function htmlPage() {
       return 'https://www.google.com/s2/favicons?sz=128&domain_url=' + encodeURIComponent(url);
     }
 
-    async function suggestForCurrentUrl() {
-      const normalized = normalizeUrl(dom.urlInput.value);
-      if (!normalized) {
-        setStatus('Bitte eine gueltige URL eingeben.', true);
-        return;
+    async function fetchLinkSuggestion(url) {
+      const response = await fetch('/api/preview?url=' + encodeURIComponent(url));
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Preview fehlgeschlagen');
       }
-
-      setStatus('Vorschlag wird geladen...');
-      dom.suggestBtn.disabled = true;
-
-      try {
-        const res = await fetch('/api/preview?url=' + encodeURIComponent(normalized));
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Preview fehlgeschlagen');
-
-        if (!dom.nameInput.value.trim()) dom.nameInput.value = data.name || '';
-        if (!dom.imageInput.value.trim() && data.image) dom.imageInput.value = data.image;
-
-        setStatus('Vorschlag geladen. Du kannst Werte noch anpassen.');
-      } catch (err) {
-        setStatus('Konnte keine Vorschau laden. Name wird lokal vorgeschlagen.', true);
-        if (!dom.nameInput.value.trim()) {
-          const host = new URL(normalized).hostname.replace(/^www\./, '');
-          dom.nameInput.value = host.split('.')[0].replace(/[-_]/g, ' ');
-        }
-      } finally {
-        dom.suggestBtn.disabled = false;
-      }
+      return {
+        name: String(data.name || ''),
+        icon: String(data.icon || domainIcon(url))
+      };
     }
 
-    function renderCategoryOptions() {
-      dom.categorySelect.innerHTML = state.categories
-        .map((c) => '<option value="' + c.replaceAll('"', '&quot;') + '">' + c + '</option>')
-        .join('');
-
-      dom.categoryChips.innerHTML = state.categories.map((c) => '<span class="chip">' + c + '</span>').join('');
+    function escapeHtmlClient(input) {
+      return String(input)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
     }
 
     function splitCategory(category) {
       const raw = String(category || '').trim();
       if (!raw) return { group: 'Sonstiges', section: 'Allgemein' };
-      const parts = raw.split('/').map((p) => p.trim()).filter(Boolean);
+      const parts = raw.split('/').map((part) => part.trim()).filter(Boolean);
       if (parts.length >= 2) return { group: parts[0], section: parts.slice(1).join(' / ') };
       return { group: parts[0] || 'Sonstiges', section: 'Allgemein' };
     }
@@ -673,9 +885,27 @@ function htmlPage() {
       dom.wrap.style.width = '100%';
     }
 
+    function applyBoardMasonryLayout() {
+      const boardStyle = window.getComputedStyle(dom.linksList);
+      const rowHeight = parseFloat(boardStyle.getPropertyValue('grid-auto-rows'));
+      const rowGap = parseFloat(boardStyle.getPropertyValue('row-gap'));
+      if (!rowHeight || Number.isNaN(rowHeight)) return;
+
+      const cards = dom.linksList.querySelectorAll('.group-card');
+      for (const card of cards) {
+        card.style.gridRowEnd = 'auto';
+      }
+      for (const card of cards) {
+        const cardHeight = card.getBoundingClientRect().height;
+        const span = Math.max(1, Math.ceil((cardHeight + rowGap) / (rowHeight + rowGap)));
+        card.style.gridRowEnd = 'span ' + span;
+      }
+    }
+
     function getGroupNamesFromState() {
       const names = [];
       const seen = new Set();
+
       for (const category of state.categories) {
         const group = splitCategory(category).group;
         if (!seen.has(group)) {
@@ -704,6 +934,249 @@ function htmlPage() {
       return state.groupOrder;
     }
 
+    function findInsertIndexForGroup(groupName) {
+      for (let i = state.links.length - 1; i >= 0; i--) {
+        const split = splitCategory(state.links[i].category);
+        if (split.group === groupName) {
+          return i + 1;
+        }
+      }
+      return state.links.length;
+    }
+
+    function getUniqueGroupName(baseName) {
+      const base = String(baseName || 'Neue Gruppe').trim() || 'Neue Gruppe';
+      const existing = new Set(syncGroupOrder().map((name) => name.toLowerCase()));
+      if (!existing.has(base.toLowerCase())) return base;
+
+      let counter = 2;
+      let candidate = base + ' (' + counter + ')';
+      while (existing.has(candidate.toLowerCase())) {
+        counter++;
+        candidate = base + ' (' + counter + ')';
+      }
+      return candidate;
+    }
+
+    function renderEditorIcon(url) {
+      if (!url) {
+        dom.editorIconPreview.removeAttribute('src');
+        dom.editorIconPreview.classList.add('icon-empty');
+        return;
+      }
+      dom.editorIconPreview.src = domainIcon(url);
+      dom.editorIconPreview.classList.remove('icon-empty');
+    }
+
+    function clearEditorSuggestionTimer() {
+      if (uiState.editor.suggestTimer) {
+        clearTimeout(uiState.editor.suggestTimer);
+        uiState.editor.suggestTimer = 0;
+      }
+    }
+
+    function closeContextMenu() {
+      uiState.contextMenu.open = false;
+      uiState.contextMenu.linkId = '';
+      dom.linkContextMenu.classList.remove('open');
+      dom.linkContextMenu.setAttribute('aria-hidden', 'true');
+    }
+
+    function openLinkContextMenu(linkId, x, y) {
+      if (!linkId) return;
+      uiState.contextMenu.open = true;
+      uiState.contextMenu.linkId = linkId;
+      dom.linkContextMenu.classList.add('open');
+      dom.linkContextMenu.setAttribute('aria-hidden', 'false');
+      dom.linkContextMenu.style.left = x + 'px';
+      dom.linkContextMenu.style.top = y + 'px';
+
+      const rect = dom.linkContextMenu.getBoundingClientRect();
+      const clampedLeft = Math.max(8, Math.min(x, window.innerWidth - rect.width - 8));
+      const clampedTop = Math.max(8, Math.min(y, window.innerHeight - rect.height - 8));
+      dom.linkContextMenu.style.left = clampedLeft + 'px';
+      dom.linkContextMenu.style.top = clampedTop + 'px';
+    }
+
+    function openLinkEditorForCreate(groupName) {
+      const group = String(groupName || '').trim();
+      if (!group) return;
+
+      closeContextMenu();
+      clearEditorSuggestionTimer();
+      uiState.editor.open = true;
+      uiState.editor.mode = 'create';
+      uiState.editor.groupName = group;
+      uiState.editor.linkId = '';
+      uiState.editor.nameTouched = false;
+      uiState.editor.suggestReqId++;
+
+      dom.editorTitle.textContent = 'Link hinzufügen';
+      dom.editorGroupHint.textContent = 'Gruppe: ' + group;
+      dom.editorUrlInput.value = '';
+      dom.editorNameInput.value = '';
+      renderEditorIcon('');
+      dom.linkEditorModal.classList.remove('hidden');
+      dom.linkEditorModal.setAttribute('aria-hidden', 'false');
+      dom.editorUrlInput.focus();
+    }
+
+    function openLinkEditorForEdit(linkId) {
+      const link = state.links.find((item) => item.id === linkId);
+      if (!link) return;
+
+      const group = splitCategory(link.category).group;
+      closeContextMenu();
+      clearEditorSuggestionTimer();
+      uiState.editor.open = true;
+      uiState.editor.mode = 'edit';
+      uiState.editor.groupName = group;
+      uiState.editor.linkId = link.id;
+      uiState.editor.nameTouched = true;
+      uiState.editor.suggestReqId++;
+
+      dom.editorTitle.textContent = 'Link bearbeiten';
+      dom.editorGroupHint.textContent = 'Gruppe: ' + group;
+      dom.editorUrlInput.value = link.url;
+      dom.editorNameInput.value = link.name;
+      renderEditorIcon(link.url);
+      dom.linkEditorModal.classList.remove('hidden');
+      dom.linkEditorModal.setAttribute('aria-hidden', 'false');
+      dom.editorUrlInput.focus();
+      dom.editorUrlInput.select();
+    }
+
+    function closeLinkEditor() {
+      if (!uiState.editor.open) return;
+      clearEditorSuggestionTimer();
+      uiState.editor.open = false;
+      uiState.editor.suggestReqId++;
+      dom.linkEditorModal.classList.add('hidden');
+      dom.linkEditorModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function scheduleEditorSuggestion() {
+      const normalized = normalizeUrl(dom.editorUrlInput.value);
+      clearEditorSuggestionTimer();
+
+      if (!normalized) {
+        renderEditorIcon('');
+        return;
+      }
+
+      renderEditorIcon(normalized);
+      const requestId = ++uiState.editor.suggestReqId;
+      uiState.editor.suggestTimer = setTimeout(async () => {
+        if (!uiState.editor.open) return;
+        try {
+          setStatus('Vorschlag wird geladen...');
+          const suggestion = await fetchLinkSuggestion(normalized);
+          if (requestId !== uiState.editor.suggestReqId || !uiState.editor.open) return;
+          if (!uiState.editor.nameTouched || !dom.editorNameInput.value.trim()) {
+            dom.editorNameInput.value = suggestion.name || inferNameFromUrl(normalized);
+          }
+          setStatus('Vorschlag geladen.');
+        } catch {
+          if (requestId !== uiState.editor.suggestReqId || !uiState.editor.open) return;
+          if (!uiState.editor.nameTouched || !dom.editorNameInput.value.trim()) {
+            dom.editorNameInput.value = inferNameFromUrl(normalized);
+          }
+          setStatus('Konnte keine Vorschau laden. Name wird lokal vorgeschlagen.', true);
+        }
+      }, 350);
+    }
+
+    function addGroup() {
+      const groupName = getUniqueGroupName('Neue Gruppe');
+      if (!state.categories.includes(groupName)) {
+        state.categories.push(groupName);
+      }
+      syncGroupOrder();
+      save();
+      renderLinks();
+      setStatus('Gruppe hinzugefügt: ' + groupName);
+    }
+
+    function deleteGroup(groupName) {
+      const group = String(groupName || '').trim();
+      if (!group) return;
+      closeContextMenu();
+      if (!confirm('Gruppe mit allen Links endgültig löschen?')) return;
+
+      state.links = state.links.filter((link) => splitCategory(link.category).group !== group);
+      state.categories = state.categories.filter((category) => splitCategory(category).group !== group);
+      state.groupOrder = state.groupOrder.filter((name) => name !== group);
+
+      syncGroupOrder();
+      save();
+      renderLinks();
+      setStatus('Gruppe gelöscht: ' + group);
+    }
+
+    function saveLinkEditor() {
+      const normalized = normalizeUrl(dom.editorUrlInput.value);
+      if (!normalized) {
+        setStatus('Bitte eine gültige URL eingeben.', true);
+        dom.editorUrlInput.focus();
+        return;
+      }
+
+      const name = dom.editorNameInput.value.trim() || inferNameFromUrl(normalized);
+      const icon = domainIcon(normalized);
+
+      if (uiState.editor.mode === 'edit') {
+        const index = state.links.findIndex((item) => item.id === uiState.editor.linkId);
+        if (index === -1) {
+          setStatus('Der Link wurde nicht gefunden.', true);
+          closeLinkEditor();
+          return;
+        }
+        state.links[index] = {
+          ...state.links[index],
+          url: normalized,
+          name,
+          icon
+        };
+        setStatus('Link aktualisiert.');
+      } else {
+        const group = uiState.editor.groupName || 'Neue Gruppe';
+        const category = buildCategory(group, 'Allgemein');
+        if (!state.categories.includes(category)) state.categories.push(category);
+
+        const newLink = {
+          id: crypto.randomUUID(),
+          url: normalized,
+          name,
+          category,
+          image: '',
+          icon
+        };
+        const insertIndex = findInsertIndexForGroup(group);
+        state.links.splice(insertIndex, 0, newLink);
+        setStatus('Link hinzugefügt.');
+      }
+
+      syncGroupOrder();
+      save();
+      renderLinks();
+      closeLinkEditor();
+    }
+
+    function deleteLink(linkId) {
+      const id = String(linkId || '');
+      if (!id) return;
+      closeContextMenu();
+      const exists = state.links.some((link) => link.id === id);
+      if (!exists) return;
+      if (!confirm('Link endgültig löschen?')) return;
+
+      state.links = state.links.filter((link) => link.id !== id);
+      syncGroupOrder();
+      save();
+      renderLinks();
+      setStatus('Link gelöscht.');
+    }
+
     function renderLinks() {
       const grouped = {};
       const categoryGroups = syncGroupOrder();
@@ -711,27 +1184,25 @@ function htmlPage() {
       for (const groupName of categoryGroups) {
         grouped[groupName] = [];
       }
-
       for (const link of state.links) {
         const split = splitCategory(link.category);
         if (!grouped[split.group]) grouped[split.group] = [];
         grouped[split.group].push(link);
       }
 
-      const groupNames = [...categoryGroups];
-      if (!groupNames.length) {
-        dom.linksList.innerHTML = '<div class="empty">Noch keine Links vorhanden.</div>';
+      if (!categoryGroups.length) {
+        dom.linksList.innerHTML = '<div class="empty">Noch keine Gruppen vorhanden. Oben auf + klicken.</div>';
         fitViewport();
         return;
       }
 
-      dom.linksList.innerHTML = groupNames.map((groupName) => {
+      dom.linksList.innerHTML = categoryGroups.map((groupName) => {
         const groupNameEscaped = escapeHtmlClient(groupName);
-        const linkItems = grouped[groupName].map((l) => {
-          const icon = escapeHtmlClient(l.icon || domainIcon(l.url));
-          const name = escapeHtmlClient(l.name);
-          const url = escapeHtmlClient(l.url);
-          const id = escapeHtmlClient(l.id);
+        const linkItems = grouped[groupName].map((link) => {
+          const icon = escapeHtmlClient(link.icon || domainIcon(link.url));
+          const name = escapeHtmlClient(link.name);
+          const url = escapeHtmlClient(link.url);
+          const id = escapeHtmlClient(link.id);
 
           return '<article class="link-item" draggable="true" data-link-id="' + id + '" data-group-name="' + groupNameEscaped + '">' +
             '<div class="link-main">' +
@@ -744,149 +1215,19 @@ function htmlPage() {
         const content = linkItems || '<div class="group-empty">Links hier ablegen</div>';
 
         return '<section class="group-card" draggable="true" data-group-name="' + groupNameEscaped + '">' +
-          '<h2 class="group-title" data-group-name="' + groupNameEscaped + '" title="Doppelklick zum Umbenennen">' + groupNameEscaped + '</h2>' +
+          '<header class="group-head">' +
+            '<h2 class="group-title" data-group-name="' + groupNameEscaped + '" title="Doppelklick zum Umbenennen">' + groupNameEscaped + '</h2>' +
+            '<div class="group-actions">' +
+              '<button class="icon-btn group-action-btn group-add-link-btn" type="button" draggable="false" data-group-name="' + groupNameEscaped + '" title="Link hinzufügen" aria-label="Link hinzufügen">' + ICON_PLUS + '</button>' +
+              '<button class="icon-btn group-action-btn group-delete-btn" type="button" draggable="false" data-group-name="' + groupNameEscaped + '" title="Gruppe löschen" aria-label="Gruppe löschen">' + ICON_TRASH + '</button>' +
+            '</div>' +
+          '</header>' +
           '<div class="links" data-group-name="' + groupNameEscaped + '">' + content + '</div>' +
         '</section>';
       }).join('');
 
       fitViewport();
-    }
-
-    function escapeHtmlClient(input) {
-      return String(input)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#39;');
-    }
-
-    function addCategory() {
-      const name = dom.newCategoryInput.value.trim();
-      if (!name) return;
-      if (state.categories.includes(name)) {
-        setStatus('Kategorie existiert bereits.', true);
-        return;
-      }
-      state.categories.push(name);
-      dom.newCategoryInput.value = '';
-      syncGroupOrder();
-      renderCategoryOptions();
-      save();
-      setStatus('Kategorie hinzugefügt.');
-    }
-
-    function addLink() {
-      const url = normalizeUrl(dom.urlInput.value);
-      const name = dom.nameInput.value.trim();
-      const image = dom.imageInput.value.trim();
-      const category = dom.categorySelect.value;
-
-      if (!url) {
-        setStatus('Bitte eine gültige URL eingeben.', true);
-        return;
-      }
-
-      const link = {
-        id: crypto.randomUUID(),
-        url,
-        name: name || new URL(url).hostname,
-        category: category || state.categories[0],
-        image,
-        icon: domainIcon(url)
-      };
-
-      state.links.unshift(link);
-      syncGroupOrder();
-      save();
-      renderLinks();
-      setStatus('Link gespeichert.');
-
-      dom.urlInput.value = '';
-      dom.nameInput.value = '';
-      dom.imageInput.value = '';
-    }
-
-    function importLinksFromText(rawText) {
-      const source = String(rawText || '').trim();
-      if (!source) {
-        setStatus('Bitte Import-Text einfügen.', true);
-        return;
-      }
-
-      let parsed;
-      try {
-        parsed = JSON.parse(source);
-      } catch {
-        const fromBrace = source.match(/\{[\s\S]*\}/);
-        if (!fromBrace) {
-          setStatus('Import-Text ist kein gültiges JSON.', true);
-          return;
-        }
-        try {
-          parsed = JSON.parse(fromBrace[0]);
-        } catch {
-          setStatus('Import-Text ist kein gültiges JSON.', true);
-          return;
-        }
-      }
-
-      const groups = Array.isArray(parsed.groups) ? parsed.groups : [];
-      if (!groups.length) {
-        setStatus('Keine groups im Import gefunden.', true);
-        return;
-      }
-
-      let created = 0;
-      let skipped = 0;
-      const existing = new Set(state.links.map((l) => (l.url + '|' + l.name).toLowerCase()));
-
-      for (const group of groups) {
-        const groupKey = (group && group.key ? String(group.key) : 'import').trim();
-        const sections = Array.isArray(group && group.sections) ? group.sections : [];
-
-        for (const section of sections) {
-          const sectionTitle = (section && section.title ? String(section.title) : 'Allgemein').trim();
-          const category = (groupKey + ' / ' + sectionTitle).slice(0, 80);
-          if (!state.categories.includes(category)) {
-            state.categories.push(category);
-          }
-
-          const links = Array.isArray(section && section.links) ? section.links : [];
-          for (const item of links) {
-            const rawUrl = item && item.url ? String(item.url) : '';
-            const normalized = normalizeUrl(rawUrl);
-            if (!normalized) {
-              skipped++;
-              continue;
-            }
-
-            const name = String((item && item.title) || inferNameFromUrl(normalized)).trim() || inferNameFromUrl(normalized);
-            const key = (normalized + '|' + name).toLowerCase();
-            if (existing.has(key)) {
-              skipped++;
-              continue;
-            }
-
-            state.links.push({
-              id: crypto.randomUUID(),
-              url: normalized,
-              name,
-              category,
-              image: '',
-              icon: domainIcon(normalized)
-            });
-            existing.add(key);
-            created++;
-          }
-        }
-      }
-
-      syncGroupOrder();
-      save();
-      renderCategoryOptions();
-      renderLinks();
-      setStatus('Import abgeschlossen: ' + created + ' neu, ' + skipped + ' übersprungen.');
+      requestAnimationFrame(applyBoardMasonryLayout);
     }
 
     function clearDropStyles() {
@@ -894,6 +1235,7 @@ function htmlPage() {
       dom.linksList.querySelectorAll('.drop-before').forEach((el) => el.classList.remove('drop-before'));
       dom.linksList.querySelectorAll('.group-drop-before').forEach((el) => el.classList.remove('group-drop-before'));
       dom.linksList.querySelectorAll('.group-drop-after').forEach((el) => el.classList.remove('group-drop-after'));
+      dom.linksList.classList.remove('group-drop-end');
     }
 
     function clearDragStyles() {
@@ -901,18 +1243,8 @@ function htmlPage() {
       dom.linksList.querySelectorAll('.dragging').forEach((el) => el.classList.remove('dragging'));
     }
 
-    function findInsertIndexForGroup(groupName) {
-      for (let i = state.links.length - 1; i >= 0; i--) {
-        const split = splitCategory(state.links[i].category);
-        if (split.group === groupName) {
-          return i + 1;
-        }
-      }
-      return state.links.length;
-    }
-
     function moveLink(draggedId, targetGroupName, beforeId = '') {
-      const sourceIndex = state.links.findIndex((l) => l.id === draggedId);
+      const sourceIndex = state.links.findIndex((item) => item.id === draggedId);
       if (sourceIndex === -1) return;
 
       const [dragged] = state.links.splice(sourceIndex, 1);
@@ -927,14 +1259,13 @@ function htmlPage() {
 
       let insertIndex = findInsertIndexForGroup(targetGroup);
       if (beforeId) {
-        const beforeIndex = state.links.findIndex((l) => l.id === beforeId);
+        const beforeIndex = state.links.findIndex((item) => item.id === beforeId);
         if (beforeIndex !== -1) insertIndex = beforeIndex;
       }
 
       state.links.splice(insertIndex, 0, dragged);
       syncGroupOrder();
       save();
-      renderCategoryOptions();
       renderLinks();
       setStatus('Link verschoben.');
     }
@@ -952,29 +1283,46 @@ function htmlPage() {
     function moveGroup(draggedGroupName, targetGroupName, insertAfter = false) {
       const dragged = String(draggedGroupName || '').trim();
       const target = String(targetGroupName || '').trim();
-      if (!dragged || !target || dragged === target) return;
+      if (!dragged || !target || dragged === target) return false;
 
       const order = [...syncGroupOrder()];
       const fromIndex = order.indexOf(dragged);
       const targetIndex = order.indexOf(target);
-      if (fromIndex === -1 || targetIndex === -1) return;
+      if (fromIndex === -1 || targetIndex === -1) return false;
+
+      const beforeOrder = order.join('\u001f');
 
       order.splice(fromIndex, 1);
       const adjustedTargetIndex = order.indexOf(target);
       const insertIndex = insertAfter ? adjustedTargetIndex + 1 : adjustedTargetIndex;
       order.splice(insertIndex, 0, dragged);
 
+      if (beforeOrder === order.join('\u001f')) return false;
+
       state.groupOrder = order;
       save();
       renderLinks();
       setStatus('Kategorie-Container verschoben.');
+      return true;
     }
 
-    function setAddPanelOpen(open) {
-      state.addPanelOpen = Boolean(open);
-      dom.addPanel.classList.toggle('panel-hidden', !state.addPanelOpen);
-      dom.toggleFormBtn.textContent = state.addPanelOpen ? 'Schließen' : 'Hinzufügen';
-      fitViewport();
+    function moveGroupToEnd(draggedGroupName) {
+      const dragged = String(draggedGroupName || '').trim();
+      if (!dragged) return false;
+
+      const order = [...syncGroupOrder()];
+      const fromIndex = order.indexOf(dragged);
+      if (fromIndex === -1) return false;
+      if (fromIndex === order.length - 1) return false;
+
+      order.splice(fromIndex, 1);
+      order.push(dragged);
+      state.groupOrder = order;
+
+      save();
+      renderLinks();
+      setStatus('Kategorie-Container verschoben.');
+      return true;
     }
 
     function renameGroup(oldGroupName, newGroupName) {
@@ -1005,21 +1353,99 @@ function htmlPage() {
       syncGroupOrder();
 
       save();
-      renderCategoryOptions();
       renderLinks();
       setStatus('Gruppe umbenannt: ' + oldName + ' -> ' + nextName);
     }
 
-    dom.addCategoryBtn.addEventListener('click', addCategory);
-    dom.suggestBtn.addEventListener('click', suggestForCurrentUrl);
-    dom.addLinkBtn.addEventListener('click', addLink);
-    dom.toggleFormBtn.addEventListener('click', () => setAddPanelOpen(!state.addPanelOpen));
-    dom.importBtn.addEventListener('click', () => importLinksFromText(dom.importInput.value));
-    dom.importInput.addEventListener('paste', () => {
-      setTimeout(() => importLinksFromText(dom.importInput.value), 50);
+    dom.addGroupBtn.addEventListener('click', addGroup);
+    dom.editorCancelBtn.addEventListener('click', closeLinkEditor);
+    dom.editorSaveBtn.addEventListener('click', saveLinkEditor);
+
+    dom.editorNameInput.addEventListener('input', () => {
+      uiState.editor.nameTouched = true;
     });
 
+    dom.editorUrlInput.addEventListener('input', () => {
+      scheduleEditorSuggestion();
+    });
+
+    dom.editorUrlInput.addEventListener('paste', () => {
+      setTimeout(scheduleEditorSuggestion, 40);
+    });
+
+    dom.linkEditorModal.addEventListener('click', (event) => {
+      if (event.target && event.target.getAttribute('data-close-modal') === 'true') {
+        closeLinkEditor();
+      }
+    });
+
+    dom.linkEditorModal.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeLinkEditor();
+      }
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        saveLinkEditor();
+      }
+    });
+
+    dom.linksList.addEventListener('click', (event) => {
+      const addButton = event.target.closest('.group-add-link-btn');
+      if (addButton) {
+        const groupName = addButton.getAttribute('data-group-name') || '';
+        openLinkEditorForCreate(groupName);
+        return;
+      }
+
+      const deleteButton = event.target.closest('.group-delete-btn');
+      if (deleteButton) {
+        const groupName = deleteButton.getAttribute('data-group-name') || '';
+        deleteGroup(groupName);
+      }
+    });
+
+    dom.linksList.addEventListener('contextmenu', (event) => {
+      const linkItem = event.target.closest('.link-item');
+      if (!linkItem) return;
+      event.preventDefault();
+
+      const linkId = linkItem.getAttribute('data-link-id') || '';
+      openLinkContextMenu(linkId, event.clientX, event.clientY);
+    });
+
+    dom.ctxEditLinkBtn.addEventListener('click', () => {
+      const linkId = uiState.contextMenu.linkId;
+      if (!linkId) return;
+      openLinkEditorForEdit(linkId);
+    });
+
+    dom.ctxDeleteLinkBtn.addEventListener('click', () => {
+      const linkId = uiState.contextMenu.linkId;
+      deleteLink(linkId);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!uiState.contextMenu.open) return;
+      if (!dom.linkContextMenu.contains(event.target)) {
+        closeContextMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeContextMenu();
+      }
+    });
+
+    window.addEventListener('scroll', closeContextMenu, true);
+
     dom.linksList.addEventListener('dragstart', (e) => {
+      if (e.target.closest('.group-action-btn')) {
+        e.preventDefault();
+        return;
+      }
+
+      closeContextMenu();
       const linkItem = e.target.closest('.link-item');
       if (linkItem) {
         dragState.linkId = linkItem.getAttribute('data-link-id');
@@ -1071,20 +1497,28 @@ function htmlPage() {
       }
 
       if (dragState.groupName) {
-        const groupCard = e.target.closest('.group-card');
-        if (!groupCard) return;
+        if (!dom.linksList.contains(e.target)) return;
 
-        const targetGroup = groupCard.getAttribute('data-group-name') || '';
         e.preventDefault();
         clearDropStyles();
 
-        if (!targetGroup || targetGroup === dragState.groupName) return;
+        const targetCard = e.target.closest('.group-card');
+        if (!targetCard) {
+          dom.linksList.classList.add('group-drop-end');
+          return;
+        }
 
-        groupCard.classList.add('drag-over');
-        if (shouldInsertAfter(e, groupCard)) {
-          groupCard.classList.add('group-drop-after');
+        const targetGroup = targetCard.getAttribute('data-group-name') || '';
+        if (!targetGroup || targetGroup === dragState.groupName) {
+          dom.linksList.classList.add('group-drop-end');
+          return;
+        }
+
+        targetCard.classList.add('drag-over');
+        if (shouldInsertAfter(e, targetCard)) {
+          targetCard.classList.add('group-drop-after');
         } else {
-          groupCard.classList.add('group-drop-before');
+          targetCard.classList.add('group-drop-before');
         }
       }
     });
@@ -1125,15 +1559,31 @@ function htmlPage() {
       }
 
       if (dragState.groupName) {
-        const targetCard = e.target.closest('.group-card');
-        if (!targetCard) return;
-
-        const targetGroup = targetCard.getAttribute('data-group-name') || '';
-        if (!targetGroup || targetGroup === dragState.groupName) return;
+        if (!dom.linksList.contains(e.target)) return;
 
         e.preventDefault();
         clearDropStyles();
-        moveGroup(dragState.groupName, targetGroup, shouldInsertAfter(e, targetCard));
+
+        const targetCard = e.target.closest('.group-card');
+        if (!targetCard) {
+          moveGroupToEnd(dragState.groupName);
+          dragState.groupName = null;
+          clearDragStyles();
+          return;
+        }
+
+        const targetGroup = targetCard.getAttribute('data-group-name') || '';
+        if (!targetGroup || targetGroup === dragState.groupName) {
+          dragState.groupName = null;
+          clearDragStyles();
+          return;
+        }
+
+        const insertAfter = shouldInsertAfter(e, targetCard);
+        const moved = moveGroup(dragState.groupName, targetGroup, insertAfter);
+        if (!moved && insertAfter) {
+          moveGroupToEnd(dragState.groupName);
+        }
         dragState.groupName = null;
         clearDragStyles();
       }
@@ -1146,6 +1596,8 @@ function htmlPage() {
     });
 
     dom.linksList.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.group-actions')) return;
+
       const title = e.target.closest('.group-title');
       if (!title) return;
 
@@ -1154,7 +1606,7 @@ function htmlPage() {
       input.type = 'text';
       input.value = oldName;
       input.style.width = '100%';
-      input.style.marginBottom = '10px';
+      input.style.marginBottom = '8px';
 
       title.replaceWith(input);
       input.focus();
@@ -1168,17 +1620,14 @@ function htmlPage() {
       input.addEventListener('blur', commit, { once: true });
     });
 
-    dom.urlInput.addEventListener('paste', () => {
-      setTimeout(() => {
-        if (dom.urlInput.value.trim()) suggestForCurrentUrl();
-      }, 50);
-    });
-
     load();
-    renderCategoryOptions();
     renderLinks();
-    setAddPanelOpen(false);
-    window.addEventListener('resize', fitViewport);
+    setStatus('Bereit.');
+    window.addEventListener('resize', () => {
+      closeContextMenu();
+      fitViewport();
+      requestAnimationFrame(applyBoardMasonryLayout);
+    });
   </script>
 </body>
 </html>`;
