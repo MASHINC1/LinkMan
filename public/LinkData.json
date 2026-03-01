@@ -1,0 +1,539 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    "Rösberg",
+    "Bugtracker",
+    "WebSites",
+    "Netzwerk",
+    "Media",
+    "Amazon",
+    "Netflix",
+    "AI",
+    "Google"
+  ],
+  "links": [
+    {
+      "id": "09575d07-29a3-4143-b28f-eae62fdca2f2",
+      "url": "https://bcs.roesberg.com",
+      "name": "BCS",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fbcs.roesberg.com"
+    },
+    {
+      "id": "da7cf3a2-592a-4811-9f31-70cb5b1b13f2",
+      "url": "https://menuelounge.com",
+      "name": "Apetito",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fmenuelounge.com"
+    },
+    {
+      "id": "900918be-d53c-4890-8fc2-2543f5c87ebb",
+      "url": "https://tasks.office.com/RoesbergEngineeringGmbH.onmicrosoft.com/de/Home/Planner/#/plantaskboard?groupId=f959a654-234f-4bf0-8146-af8cb99b0670&planId=Lf9OQlCnV0uEpoYnsLlJIJYACmaB",
+      "name": "Planner",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Ftasks.office.com%2FRoesbergEngineeringGmbH.onmicrosoft.com%2Fde%2FHome%2FPlanner%2F%23%2Fplantaskboard%3FgroupId%3Df959a654-234f-4bf0-8146-af8cb99b0670%26planId%3DLf9OQlCnV0uEpoYnsLlJIJYACmaB"
+    },
+    {
+      "id": "45fe3817-4f2a-4764-892b-7e01e0c12002",
+      "url": "https://roesbergengineeringgmbh.sharepoint.com/REKASP/RCCWiki/PAM.aspx",
+      "name": "Entwickler Wiki",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Froesbergengineeringgmbh.sharepoint.com%2FREKASP%2FRCCWiki%2FPAM.aspx"
+    },
+    {
+      "id": "38883b24-681a-4450-b9cf-cfa8d15d51da",
+      "url": "https://roesbergengineeringgmbh.sharepoint.com/sites/RoesbergWiki",
+      "name": "Rösberg Wiki",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Froesbergengineeringgmbh.sharepoint.com%2Fsites%2FRoesbergWiki"
+    },
+    {
+      "id": "94a89565-3cbb-485b-bc47-3ffc6e5462e8",
+      "url": "https://portal.office.com",
+      "name": "Office 365",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fportal.office.com"
+    },
+    {
+      "id": "61ddb131-b7b5-406a-8ea4-d91f92d6daee",
+      "url": "https://roesberg-engineering-gmbh.personio.de/",
+      "name": "Personio",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Froesberg-engineering-gmbh.personio.de%2F"
+    },
+    {
+      "id": "80f6f50b-c140-4aac-8c0e-8571cf463c1a",
+      "url": "https://pamtestcenter/",
+      "name": "PAM Testserver",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fpamtestcenter%2F"
+    },
+    {
+      "id": "ac912cdc-916b-4597-b77d-7b00813a79db",
+      "url": "http://rekasvn.roesberg.local/svn/RCC/",
+      "name": "SVN Server",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekasvn.roesberg.local%2Fsvn%2FRCC%2F"
+    },
+    {
+      "id": "e294d554-70d2-4028-b817-8611775c5cce",
+      "url": "http://192.168.1.16/CCNet/ViewFarmReport.aspx",
+      "name": "CruiseControl",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.1.16%2FCCNet%2FViewFarmReport.aspx"
+    },
+    {
+      "id": "352b06e5-7a82-477b-b2e3-e3728e0367b5",
+      "url": "https://portal.ewe-go.de/contract/bc5122ea-a0fa-4dd8-b737-dfd7502e3928/overview",
+      "name": "Auto: EW-Go Portal",
+      "category": "Rösberg",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fportal.ewe-go.de%2Fcontract%2Fbc5122ea-a0fa-4dd8-b737-dfd7502e3928%2Foverview"
+    },
+    {
+      "id": "3c89fa2d-65c8-47aa-a260-f0e8566b98ee",
+      "url": "http://rekaisv:8081/phpbt/board.php?ProjectID=22&ComponentID=156&VersionID=468",
+      "name": "LiveForms V25.0.1",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Fboard.php%3FProjectID%3D22%26ComponentID%3D156%26VersionID%3D468"
+    },
+    {
+      "id": "eab8407c-0630-4a83-8aae-44c1fcb880de",
+      "url": "http://rekaisv:8081/phpbt/board.php?ProjectID=22&ComponentID=156&VersionID=448",
+      "name": "LiveForms V26.0.0",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Fboard.php%3FProjectID%3D22%26ComponentID%3D156%26VersionID%3D448"
+    },
+    {
+      "id": "98b62558-1d94-435f-b139-73db9e91ba99",
+      "url": "http://rekaisv:8081/phpbt/board.php?ProjectID=22&ComponentID=156&VersionID=461",
+      "name": "LiveForms V24.6.2",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Fboard.php%3FProjectID%3D22%26ComponentID%3D156%26VersionID%3D461"
+    },
+    {
+      "id": "ce9134b2-eaff-41ee-907b-b61328f5a78d",
+      "url": "http://rekaisv:8081/phpbt/board.php?ProjectID=22&ComponentID=156&VersionID=451",
+      "name": "LiveForms V24.6.1",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Fboard.php%3FProjectID%3D22%26ComponentID%3D156%26VersionID%3D451"
+    },
+    {
+      "id": "74a568ac-b124-41e2-b12e-817a7c1eb599",
+      "url": "http://rekaisv:8081/phpbt/board.php?ProjectID=22&ComponentID=156&VersionID=447",
+      "name": "LiveForms V24.6.0",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Fboard.php%3FProjectID%3D22%26ComponentID%3D156%26VersionID%3D447"
+    },
+    {
+      "id": "9b6da36c-866c-487f-a5ee-6389d8534565",
+      "url": "http://rekaisv:8081/phpbt/board.php?ProjectID=22&ComponentID=156&VersionID=419",
+      "name": "LiveForms V25.0",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Fboard.php%3FProjectID%3D22%26ComponentID%3D156%26VersionID%3D419"
+    },
+    {
+      "id": "61bb40e5-3ca2-4c92-95da-72c49e43e7d9",
+      "url": "http://rekaisv:8081/phpbt/index.php",
+      "name": "BugTracker",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Findex.php"
+    },
+    {
+      "id": "25aef141-51fc-40e9-bfff-4adbd2103544",
+      "url": "http://rekaisv:8081/phpbt/rcc.php",
+      "name": "RCC",
+      "category": "Bugtracker",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpbt%2Frcc.php"
+    },
+    {
+      "id": "1846e3aa-7561-4d80-bbca-7613b3eca896",
+      "url": "http://rekaisv:8081/phpmyadmin",
+      "name": "MyAdmin",
+      "category": "WebSites",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Frekaisv%3A8081%2Fphpmyadmin"
+    },
+    {
+      "id": "8191bc4d-e1cf-4788-9781-0305ac20c7ab",
+      "url": "http://hog.bandlister.de",
+      "name": "HOG",
+      "category": "WebSites",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Fhog.bandlister.de"
+    },
+    {
+      "id": "13798d2c-0291-4f19-b300-9f5cc4197e22",
+      "url": "http://hogtermine.bandlister.de/kat_private/",
+      "name": "Termine HOG",
+      "category": "WebSites",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Fhogtermine.bandlister.de%2Fkat_private%2F"
+    },
+    {
+      "id": "67e630ea-b9f3-4a01-bcb8-74ebe0695fb5",
+      "url": "http://midroba.bandlister.de/kat_private",
+      "name": "Termine Midroba",
+      "category": "WebSites",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Fmidroba.bandlister.de%2Fkat_private"
+    },
+    {
+      "id": "2f889c6d-f1a4-4214-b0eb-fbe7063ee609",
+      "url": "https://baden.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/teamPortrait?team=2937406&championship=B2+S+2023",
+      "name": "nuLiga",
+      "category": "WebSites",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fbaden.liga.nu%2Fcgi-bin%2FWebObjects%2FnuLigaTENDE.woa%2Fwa%2FteamPortrait%3Fteam%3D2937406%26championship%3DB2%2BS%2B2023"
+    },
+    {
+      "id": "79658e47-12f1-4fb9-8e8a-ff8f40257ad6",
+      "url": "https://spieler.tennis.de/group/guest/lk-portrait-2",
+      "name": "LK Profil",
+      "category": "WebSites",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fspieler.tennis.de%2Fgroup%2Fguest%2Flk-portrait-2"
+    },
+    {
+      "id": "120ccfda-b06c-43ec-b295-8364aebca1dc",
+      "url": "https://manage.wix.com/dashboard/ec220ce4-3cd2-4d95-b601-3fb23ae857e5/home",
+      "name": "HOG3 Admin",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fmanage.wix.com%2Fdashboard%2Fec220ce4-3cd2-4d95-b601-3fb23ae857e5%2Fhome"
+    },
+    {
+      "id": "c1c87ced-88a0-4a3f-b94f-3ebc81bf9527",
+      "url": "http://192.168.0.1",
+      "name": "Modem",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.0.1"
+    },
+    {
+      "id": "dbe8d543-8a44-4f0d-a5ee-026a85262c0d",
+      "url": "http://192.168.88.1",
+      "name": "Router TP-Link",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.88.1"
+    },
+    {
+      "id": "0f31cfff-af78-47d6-85b7-821b332b6e78",
+      "url": "http://192.168.88.108",
+      "name": "ACP TP-Link AX150 Wohnzimmer",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.88.108"
+    },
+    {
+      "id": "68675f95-a3fc-4178-920b-529611a89475",
+      "url": "http://192.168.88.107",
+      "name": "ACP TP-Link AX150 Keller",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.88.107"
+    },
+    {
+      "id": "f0777a95-4db9-4746-9a0f-d42b6b51f8ad",
+      "url": "http://192.168.88.103",
+      "name": "ACP FritzBox KG",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.88.103"
+    },
+    {
+      "id": "43aeb618-44cd-4d6c-91bf-70861d357484",
+      "url": "http://192.168.88.104",
+      "name": "ACP NetGear EG",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2F192.168.88.104"
+    },
+    {
+      "id": "668bc245-0a1d-4138-ba27-21eee173be65",
+      "url": "https://192.168.88.110",
+      "name": "NAS Intern",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2F192.168.88.110"
+    },
+    {
+      "id": "b765531a-7c11-4024-87d8-fc0e96561d21",
+      "url": "http://bickel.synology.me",
+      "name": "bickel.synology.me",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=http%3A%2F%2Fbickel.synology.me"
+    },
+    {
+      "id": "f535a80d-4fe3-46bd-8d09-5a13ef0ce63a",
+      "url": "https://bickels.de4.quickconnect.to/",
+      "name": "NAS Extern",
+      "category": "Netzwerk",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fbickels.de4.quickconnect.to%2F"
+    },
+    {
+      "id": "de986977-1e03-4c94-a3ce-3792b3c22dcb",
+      "url": "https://www.youtube.com",
+      "name": "YouTube",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.youtube.com"
+    },
+    {
+      "id": "2d27a588-9a1f-467e-98f9-0b89fd62bd14",
+      "url": "https://open.spotify.com",
+      "name": "Spotify",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fopen.spotify.com"
+    },
+    {
+      "id": "f3a7b563-8cc2-469a-9249-3a793a47a98d",
+      "url": "https://www.facebook.com",
+      "name": "Facebook",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.facebook.com"
+    },
+    {
+      "id": "2db8d777-0421-45db-a25d-ed79d53f1ee9",
+      "url": "https://www.kleinanzeigen.de/m-meine-anzeigen.html?login=success",
+      "name": "Kleinanzeigen",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.kleinanzeigen.de%2Fm-meine-anzeigen.html%3Flogin%3Dsuccess"
+    },
+    {
+      "id": "ea84eb53-1868-4aa9-a98e-ef3d5cb3703d",
+      "url": "https://www.chess.com/home",
+      "name": "Chess.com",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.chess.com%2Fhome"
+    },
+    {
+      "id": "1fd8931f-ea8d-485c-85f3-8aa1ae3fcf3e",
+      "url": "https://www.thomann.de/de/index.html",
+      "name": "Thomann",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.thomann.de%2Fde%2Findex.html"
+    },
+    {
+      "id": "e8d0cad5-e151-4777-8246-b7c03149c87d",
+      "url": "https://wertpapiere.ing.de/DE/Showpage.aspx?pageID=74",
+      "name": "ING WatchList",
+      "category": "Media",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwertpapiere.ing.de%2FDE%2FShowpage.aspx%3FpageID%3D74"
+    },
+    {
+      "id": "51b5bc46-8ffa-4e88-9f53-e532a79dbf05",
+      "url": "https://www.amazon.de/Prime-Instant-Video/b?node=3279204031&ref=DE_Prime_pmp_video&ms3_c=d97d242a155e649154ce4bf2cc27da5a",
+      "name": "Amazon",
+      "category": "Amazon",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.amazon.de%2FPrime-Instant-Video%2Fb%3Fnode%3D3279204031%26ref%3DDE_Prime_pmp_video%26ms3_c%3Dd97d242a155e649154ce4bf2cc27da5a"
+    },
+    {
+      "id": "bb244c8b-1bdd-4c85-b38b-8da2b4e16ac6",
+      "url": "https://www.amazon.de/Amazon-Video/b/?ie=UTF8&node=3010075031&ref_=nav_cs_prime_video",
+      "name": "Prime",
+      "category": "Amazon",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.amazon.de%2FAmazon-Video%2Fb%2F%3Fie%3DUTF8%26node%3D3010075031%26ref_%3Dnav_cs_prime_video"
+    },
+    {
+      "id": "6b43f92a-ab6a-45f9-b41f-549aa04286f0",
+      "url": "https://www.amazon.de/gp/video/settings/watch-history?ref_=atv_auth_red_aft",
+      "name": "Prime WGV",
+      "category": "Amazon",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.amazon.de%2Fgp%2Fvideo%2Fsettings%2Fwatch-history%3Fref_%3Datv_auth_red_aft"
+    },
+    {
+      "id": "96a3cfcf-f78f-4964-b0cf-fe33b00d22e6",
+      "url": "https://www.netflix.com/browse",
+      "name": "Netflix",
+      "category": "Netflix",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.netflix.com%2Fbrowse"
+    },
+    {
+      "id": "3b9a8681-9a5f-4ce7-9c61-57aacf4a2ee5",
+      "url": "https://www.netflix.com/browse/genre/502675?locale=de-DE&so=su",
+      "name": "Genres",
+      "category": "Netflix",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.netflix.com%2Fbrowse%2Fgenre%2F502675%3Flocale%3Dde-DE%26so%3Dsu"
+    },
+    {
+      "id": "e14dff49-9ed5-4788-8416-48b4438d1b6c",
+      "url": "https://www.netflix.com/settings/viewed/E6BN3OJKYNGQHA7PYUD3JRPV2E",
+      "name": "WGV",
+      "category": "Netflix",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.netflix.com%2Fsettings%2Fviewed%2FE6BN3OJKYNGQHA7PYUD3JRPV2E"
+    },
+    {
+      "id": "387b8b6b-b548-4bd6-902e-d5f16752c328",
+      "url": "https://chatgpt.com",
+      "name": "ChatGPT",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fchatgpt.com"
+    },
+    {
+      "id": "8de22765-c000-4adc-a023-c6c2f8629c63",
+      "url": "https://gemini.google.com/app?hl=de",
+      "name": "Gemini",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fgemini.google.com%2Fapp%3Fhl%3Dde"
+    },
+    {
+      "id": "1d74aeca-8765-4cbd-901f-916cf4ff9b74",
+      "url": "https://www.deepseek.com",
+      "name": "Deepseek",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.deepseek.com"
+    },
+    {
+      "id": "99349e3a-c131-4f8a-b0b9-9da611e8e123",
+      "url": "https://www.perplexity.ai",
+      "name": "Perplexity",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.perplexity.ai"
+    },
+    {
+      "id": "5ed7e2fd-a910-4dad-beb9-d1b03b4b086c",
+      "url": "https://lovable.dev",
+      "name": "Lovable",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Flovable.dev"
+    },
+    {
+      "id": "2265ea7d-4dc1-4780-a92b-37a218b26dbe",
+      "url": "https://lovable.dev/projects/3b024043-3d96-48ca-8838-ac760f0974b6",
+      "name": "Lovable SetLister",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Flovable.dev%2Fprojects%2F3b024043-3d96-48ca-8838-ac760f0974b6"
+    },
+    {
+      "id": "bfce5a0e-a08e-4f5d-89fd-88cceab82165",
+      "url": "https://suno.com/create",
+      "name": "Suno",
+      "category": "AI",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fsuno.com%2Fcreate"
+    },
+    {
+      "id": "9931c46f-20b0-4304-8f36-5614ecae6b68",
+      "url": "https://calendar.google.com/calendar/r?tab=wc&pli=1#g",
+      "name": "Kalender",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fr%3Ftab%3Dwc%26pli%3D1%23g"
+    },
+    {
+      "id": "6eba6e03-3bc2-40c8-a0a9-ebfcf30c2720",
+      "url": "https://translate.google.de/?hl=de&tab=wT",
+      "name": "Translator",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Ftranslate.google.de%2F%3Fhl%3Dde%26tab%3DwT"
+    },
+    {
+      "id": "2172ceaa-98c7-4e91-aa77-4b268fa7bf86",
+      "url": "https://photos.google.com/?tab=wq&pageId=none",
+      "name": "Fotos",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fphotos.google.com%2F%3Ftab%3Dwq%26pageId%3Dnone"
+    },
+    {
+      "id": "ec6849e9-c3dc-4c0a-ad69-50f9f90e4138",
+      "url": "https://drive.google.com/drive/u/0/my-drive",
+      "name": "Drive",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F0%2Fmy-drive"
+    },
+    {
+      "id": "72a075e3-8356-4f2e-9645-4dde8ae257d8",
+      "url": "https://docs.google.com/document/u/0",
+      "name": "Docs",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fu%2F0"
+    },
+    {
+      "id": "46496a2f-02fe-4344-8460-1f5150a88e83",
+      "url": "https://contacts.google.com",
+      "name": "Kontakte",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fcontacts.google.com"
+    },
+    {
+      "id": "56958bc2-0fee-4db3-98f8-7faa5191ddd1",
+      "url": "https://www.google.de/maps/dir/Industriestraße+9,+D-76189+Karlsruhe,+Deutschland/Kirchbergstraße+28B,+76706+Dettenheim,+Deutschland/@49.1208432,8.227516,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x4797013769cb31dd:0xcd5da43113bfa00c!2m2!1d8.3220076!2d49.0080985!1m5!1m1!1s0x4797ae5a5032d1bf:0x1ee353f6a92feb97!2m2!1d8.4227812!2d49.1872204!3e0",
+      "name": "Maps KA",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.google.de%2Fmaps%2Fdir%2FIndustriestra%C3%9Fe%2B9%2C%2BD-76189%2BKarlsruhe%2C%2BDeutschland%2FKirchbergstra%C3%9Fe%2B28B%2C%2B76706%2BDettenheim%2C%2BDeutschland%2F%4049.1208432%2C8.227516%2C11z%2Fdata%3D%213m1%214b1%214m14%214m13%211m5%211m1%211s0x4797013769cb31dd%3A0xcd5da43113bfa00c%212m2%211d8.3220076%212d49.0080985%211m5%211m1%211s0x4797ae5a5032d1bf%3A0x1ee353f6a92feb97%212m2%211d8.4227812%212d49.1872204%213e0"
+    },
+    {
+      "id": "10d6df3a-2ff9-467f-ae96-293ea664a9c7",
+      "url": "https://www.google.de/maps/dir/Kreuzholzstraße+4,+Ludwigshafen+am+Rhein/Kirchbergstraße+28B,+76706+Dettenheim,+Deutschland/@49.3712862,8.1554134,10z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x4797cd5b78e73d6d:0xf26cf479d37ed379!2m2!1d8.40848!2d49.54145!1m5!1m1!1s0x4797ae5a5032d1bf:0x1ee353f6a92feb97!2m2!1d8.4227812!2d49.1872204!3e0",
+      "name": "Maps LU",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fwww.google.de%2Fmaps%2Fdir%2FKreuzholzstra%C3%9Fe%2B4%2C%2BLudwigshafen%2Bam%2BRhein%2FKirchbergstra%C3%9Fe%2B28B%2C%2B76706%2BDettenheim%2C%2BDeutschland%2F%4049.3712862%2C8.1554134%2C10z%2Fdata%3D%213m1%214b1%214m14%214m13%211m5%211m1%211s0x4797cd5b78e73d6d%3A0xf26cf479d37ed379%212m2%211d8.40848%212d49.54145%211m5%211m1%211s0x4797ae5a5032d1bf%3A0x1ee353f6a92feb97%212m2%211d8.4227812%212d49.1872204%213e0"
+    },
+    {
+      "id": "43f9bc5d-20d4-4bf7-9165-a013c0a26178",
+      "url": "https://docs.google.com/document/d/1ZJMl-Pz4Rk18a9bdzsV1rmNn-INVw0yrOd3KSkUEIow/edit?tab=t.0",
+      "name": "Kochbuch",
+      "category": "Google",
+      "image": "",
+      "icon": "https://www.google.com/s2/favicons?sz=128&domain_url=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1ZJMl-Pz4Rk18a9bdzsV1rmNn-INVw0yrOd3KSkUEIow%2Fedit%3Ftab%3Dt.0"
+    }
+  ],
+  "groupOrder": [
+    "Rösberg",
+    "Bugtracker",
+    "WebSites",
+    "Netzwerk",
+    "Media",
+    "Amazon",
+    "Netflix",
+    "AI",
+    "Google"
+  ]
+}
