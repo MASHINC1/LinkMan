@@ -18,6 +18,8 @@
       --muted: #a8a8a8;
       --accent: orangered;
       --accent-2: #ff6d4a;
+      --menu-item-text: #dfdfe1;
+      --menu-item-font-size: 13px;
       --danger: #ff8470;
       --border: #3c3c3c;
       --group-col-min: 220px;
@@ -31,7 +33,7 @@
     body {
       margin: 0;
       height: 100vh;
-      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      font-family:  "Segoe UI", sans-serif;
       font-size: 15px;
       color: var(--text);
       overflow: auto;
@@ -184,6 +186,37 @@
       font-size: 0.82rem;
       letter-spacing: 0.02em;
       word-break: break-word;
+    }
+
+    .color-setting {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+    }
+
+    .color-input {
+      width: 72px;
+      min-width: 72px;
+      padding: 4px;
+      cursor: pointer;
+    }
+
+    .size-setting {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .size-input {
+      min-width: 0;
+    }
+
+    .size-value {
+      min-width: 48px;
+      text-align: right;
+      font-size: 0.84rem;
     }
 
     .card {
@@ -348,6 +381,14 @@
       padding: 8px;
       min-height: 170px;
       animation: reveal 240ms ease-out;
+      cursor: grab;
+    }
+
+    .widget-card.dragging {
+      opacity: 0.45;
+      cursor: grabbing;
+      border-color: var(--accent);
+      box-shadow: 0 0 18px rgba(255, 69, 0, 0.24);
     }
 
     .widget-head {
@@ -544,24 +585,29 @@
       box-shadow: inset 0 2px 0 var(--accent), 0 0 12px rgba(255, 69, 0, 0.18);
     }
 
-    .group-card.drag-over {
+    .group-card.drag-over,
+    .widget-card.drag-over {
       border-color: var(--accent-2);
       box-shadow: 0 0 16px rgba(255, 69, 0, 0.16);
     }
 
-    .group-card.group-drop-left {
+    .group-card.group-drop-left,
+    .widget-card.group-drop-left {
       box-shadow: inset 3px 0 0 var(--accent), 0 0 16px rgba(255, 69, 0, 0.16);
     }
 
-    .group-card.group-drop-right {
+    .group-card.group-drop-right,
+    .widget-card.group-drop-right {
       box-shadow: inset -3px 0 0 var(--accent), 0 0 16px rgba(255, 69, 0, 0.16);
     }
 
-    .group-card.group-drop-top {
+    .group-card.group-drop-top,
+    .widget-card.group-drop-top {
       box-shadow: inset 0 3px 0 var(--accent), 0 0 16px rgba(255, 69, 0, 0.16);
     }
 
-    .group-card.group-drop-bottom {
+    .group-card.group-drop-bottom,
+    .widget-card.group-drop-bottom {
       box-shadow: inset 0 -3px 0 var(--accent), 0 0 16px rgba(255, 69, 0, 0.16);
     }
 
@@ -605,13 +651,17 @@
     }
 
     .link-action {
-      color: #f2f3f5;
+      color: var(--menu-item-text);
       text-decoration: none;
-      font-size: 13px;
+      font-size: var(--menu-item-font-size);
+    }
+
+    .link-action:visited {
+      color: var(--menu-item-text);
     }
 
     .link-action:hover {
-      color: #ffffff;
+      color: var(--menu-item-text);
       text-decoration: underline;
       text-decoration-thickness: 1px;
     }
@@ -734,11 +784,11 @@
       border: 1px solid transparent;
       border-radius: 7px;
       background: transparent;
-      color: #dfdfe1;
+      color: var(--menu-item-text);
       text-align: left;
       padding: 7px 9px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: var(--menu-item-font-size);
     }
 
     .context-menu-item:hover,
@@ -750,7 +800,7 @@
     }
 
     .context-menu-item.danger {
-      color: #ffb8aa;
+      color: var(--menu-item-text);
     }
 
     .toggle-row {
@@ -876,7 +926,7 @@
     <div class="modal-backdrop" data-close-functions="true"></div>
     <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="functionsTitle">
       <h2 id="functionsTitle" class="modal-title">Funktionen</h2>
-      <p class="muted modal-hint">JSON-Datei laden, speichern und exportieren.</p>
+      <p class="muted modal-hint">JSON-Datei laden, speichern, exportieren und Anzeige anpassen.</p>
       <div class="functions-panel">
         <button id="openDataBtn" class="btn btn-secondary" type="button">JSON öffnen</button>
         <button id="saveDataBtn" class="btn btn-main" type="button">Speichern</button>
@@ -884,6 +934,23 @@
         <button id="exportDataBtn" class="btn btn-secondary" type="button">JSON exportieren</button>
       </div>
       <p id="dataFileName" class="muted functions-file-name">Keine Datei verbunden.</p>
+      <div class="row">
+        <label for="menuItemTextColorInput">Schriftfarbe Menüpunkte</label>
+        <p class="muted modal-hint">Gilt für die Linktexte der Menüpunkte sowie die Menüs.</p>
+        <div class="color-setting">
+          <input id="menuItemTextColorInput" class="color-input" type="color" value="#dfdfe1" />
+          <button id="resetMenuItemTextColorBtn" class="btn btn-secondary" type="button">Zurücksetzen</button>
+        </div>
+      </div>
+      <div class="row">
+        <label for="menuItemFontSizeInput">Schriftgröße Menüpunkte</label>
+        <p class="muted modal-hint">Wird zusammen mit den übrigen Einstellungen gespeichert.</p>
+        <div class="size-setting">
+          <input id="menuItemFontSizeInput" class="size-input" type="range" min="10" max="24" step="1" value="13" />
+          <span id="menuItemFontSizeValue" class="muted size-value">13 px</span>
+          <button id="resetMenuItemFontSizeBtn" class="btn btn-secondary" type="button">Zurücksetzen</button>
+        </div>
+      </div>
       <div class="modal-actions">
         <button id="functionsCloseBtn" class="btn btn-secondary" type="button">Schließen</button>
       </div>
@@ -952,7 +1019,7 @@
   </div>
 
   <script>
-    const FILE_SCHEMA_VERSION = 2;
+    const FILE_SCHEMA_VERSION = 4;
     const DEFAULT_FILE_NAME = 'LinkData.json';
     const LEGACY_STORAGE_KEY = 'linkman_data_v1';
     const CACHE_STORAGE_KEY = 'linkman_cache_v2';
@@ -960,6 +1027,10 @@
     const FILE_PICKER_AVAILABLE = typeof window.showOpenFilePicker === 'function' && typeof window.showSaveFilePicker === 'function';
     const WIDGET_TYPE_ANALOG_CLOCK = 'analog-clock';
     const COMMON_TIME_ZONES = ['Europe/Berlin', 'UTC', 'Europe/London', 'America/New_York', 'America/Los_Angeles', 'Asia/Tokyo', 'Australia/Sydney'];
+    const DEFAULT_SETTINGS = Object.freeze({
+      menuItemTextColor: '#dfdfe1',
+      menuItemFontSize: 13
+    });
     const ICON_PLUS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
     const ICON_TRASH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M9 10v7M12 10v7M15 10v7M6.8 7l.8 12h8.8l.8-12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     const ICON_GEAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm8.2 3.8-1.8-.6a6.5 6.5 0 0 0-.5-1.2l.9-1.7-1.8-1.8-1.7.9c-.4-.2-.8-.4-1.2-.5l-.6-1.8H10l-.6 1.8c-.4.1-.8.3-1.2.5l-1.7-.9-1.8 1.8.9 1.7c-.2.4-.4.8-.5 1.2l-1.8.6v2.6l1.8.6c.1.4.3.8.5 1.2l-.9 1.7 1.8 1.8 1.7-.9c.4.2.8.4 1.2.5l.6 1.8h2.6l.6-1.8c.4-.1.8-.3 1.2-.5l1.7.9 1.8-1.8-.9-1.7c.2-.4.4-.8.5-1.2l1.8-.6V12z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>';
@@ -968,7 +1039,11 @@
       categories: [],
       links: [],
       groupOrder: [],
-      widgets: []
+      containerOrder: [],
+      widgets: [],
+      settings: {
+        ...DEFAULT_SETTINGS
+      }
     };
 
     const uiState = {
@@ -1011,6 +1086,11 @@
       exportDataBtn: document.getElementById('exportDataBtn'),
       importFileInput: document.getElementById('importFileInput'),
       dataFileName: document.getElementById('dataFileName'),
+      menuItemTextColorInput: document.getElementById('menuItemTextColorInput'),
+      resetMenuItemTextColorBtn: document.getElementById('resetMenuItemTextColorBtn'),
+      menuItemFontSizeInput: document.getElementById('menuItemFontSizeInput'),
+      menuItemFontSizeValue: document.getElementById('menuItemFontSizeValue'),
+      resetMenuItemFontSizeBtn: document.getElementById('resetMenuItemFontSizeBtn'),
       linksList: document.getElementById('linksList'),
       statusText: document.getElementById('statusText'),
       functionsModal: document.getElementById('functionsModal'),
@@ -1038,7 +1118,7 @@
 
     const dragState = {
       linkId: null,
-      groupName: null
+      containerKey: null
     };
 
     const timeFormatterCache = new Map();
@@ -1049,7 +1129,9 @@
         categories: state.categories,
         links: state.links,
         groupOrder: state.groupOrder,
-        widgets: state.widgets
+        containerOrder: state.containerOrder,
+        widgets: state.widgets,
+        settings: state.settings
       };
     }
 
@@ -1065,7 +1147,44 @@
       state.categories = [];
       state.links = [];
       state.groupOrder = [];
+      state.containerOrder = [];
       state.widgets = [];
+      state.settings = {
+        ...DEFAULT_SETTINGS
+      };
+    }
+
+    function normalizeHexColor(value, fallback = DEFAULT_SETTINGS.menuItemTextColor) {
+      const candidate = String(value || '').trim();
+      if (/^#[0-9a-fA-F]{6}$/.test(candidate)) {
+        return candidate.toLowerCase();
+      }
+      return fallback;
+    }
+
+    function normalizeMenuItemFontSize(value, fallback = DEFAULT_SETTINGS.menuItemFontSize) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return fallback;
+      const rounded = Math.round(numeric);
+      return Math.min(24, Math.max(10, rounded));
+    }
+
+    function normalizeSettings(rawSettings) {
+      const source = rawSettings && typeof rawSettings === 'object' ? rawSettings : {};
+      return {
+        menuItemTextColor: normalizeHexColor(source.menuItemTextColor, DEFAULT_SETTINGS.menuItemTextColor),
+        menuItemFontSize: normalizeMenuItemFontSize(source.menuItemFontSize, DEFAULT_SETTINGS.menuItemFontSize)
+      };
+    }
+
+    function applySettings() {
+      const normalized = normalizeSettings(state.settings);
+      state.settings = normalized;
+      document.documentElement.style.setProperty('--menu-item-text', normalized.menuItemTextColor);
+      document.documentElement.style.setProperty('--menu-item-font-size', normalized.menuItemFontSize + 'px');
+      dom.menuItemTextColorInput.value = normalized.menuItemTextColor;
+      dom.menuItemFontSizeInput.value = String(normalized.menuItemFontSize);
+      dom.menuItemFontSizeValue.textContent = normalized.menuItemFontSize + ' px';
     }
 
     function getDefaultTimeZone() {
@@ -1113,12 +1232,16 @@
     function applyParsedData(parsed) {
       resetState();
       const source = parsed && typeof parsed === 'object' ? parsed : {};
+      state.settings = normalizeSettings(source.settings);
 
       if (Array.isArray(source.categories)) {
         state.categories = [...new Set(source.categories.map((item) => String(item).trim()).filter(Boolean))];
       }
       if (Array.isArray(source.groupOrder)) {
         state.groupOrder = [...new Set(source.groupOrder.map((item) => String(item).trim()).filter(Boolean))];
+      }
+      if (Array.isArray(source.containerOrder)) {
+        state.containerOrder = [...new Set(source.containerOrder.map((item) => String(item).trim()).filter(Boolean))];
       }
       if (Array.isArray(source.links)) {
         state.links = source.links
@@ -1148,6 +1271,8 @@
       }
 
       syncGroupOrder();
+      syncContainerOrder();
+      applySettings();
     }
 
     function updateDataFileLabel() {
@@ -1196,6 +1321,8 @@
     }
 
     function save() {
+      syncGroupOrder();
+      syncContainerOrder();
       uiState.hasUnsavedChanges = true;
       updateDataFileLabel();
       writeCacheSnapshot();
@@ -1578,6 +1705,31 @@
       return state.groupOrder;
     }
 
+    function groupContainerKey(groupName) {
+      return 'g:' + String(groupName || '').trim();
+    }
+
+    function widgetContainerKey(widgetId) {
+      return 'w:' + String(widgetId || '').trim();
+    }
+
+    function getCurrentContainerKeys() {
+      const groups = syncGroupOrder().map((groupName) => groupContainerKey(groupName));
+      const widgets = state.widgets.map((widget) => widgetContainerKey(widget.id));
+      return [...widgets, ...groups];
+    }
+
+    function syncContainerOrder() {
+      const currentKeys = getCurrentContainerKeys();
+      const currentSet = new Set(currentKeys);
+      const nextOrder = state.containerOrder.filter((key) => currentSet.has(key));
+      for (const key of currentKeys) {
+        if (!nextOrder.includes(key)) nextOrder.push(key);
+      }
+      state.containerOrder = nextOrder;
+      return state.containerOrder;
+    }
+
     function findInsertIndexForGroup(groupName) {
       for (let i = state.links.length - 1; i >= 0; i--) {
         const split = splitCategory(state.links[i].category);
@@ -1789,8 +1941,9 @@
       const id = escapeHtmlClient(widget.id);
       const timezone = escapeHtmlClient(widget.timezone);
       const secondClass = widget.showSeconds ? '' : ' hidden';
+      const containerKey = escapeHtmlClient(widgetContainerKey(widget.id));
 
-      return '<section class="widget-card" data-widget-id="' + id + '">' +
+      return '<section class="widget-card" draggable="true" data-widget-id="' + id + '" data-container-key="' + containerKey + '">' +
         '<header class="widget-head">' +
           '<h2 class="widget-title">Analoge Uhr</h2>' +
           '<div class="group-actions">' +
@@ -1876,6 +2029,7 @@
     function openFunctionsModal() {
       closeContextMenu();
       closeWidgetAddMenu();
+      applySettings();
       dom.functionsModal.classList.remove('hidden');
       dom.functionsModal.setAttribute('aria-hidden', 'false');
     }
@@ -1883,6 +2037,38 @@
     function closeFunctionsModal() {
       dom.functionsModal.classList.add('hidden');
       dom.functionsModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function setMenuItemTextColor(value, persist = false) {
+      const normalized = normalizeHexColor(value, state.settings.menuItemTextColor);
+      const changed = state.settings.menuItemTextColor !== normalized;
+      state.settings.menuItemTextColor = normalized;
+      applySettings();
+      if (persist && changed) {
+        save();
+      }
+      return changed;
+    }
+
+    function resetMenuItemTextColor() {
+      const changed = setMenuItemTextColor(DEFAULT_SETTINGS.menuItemTextColor, true);
+      setStatus(changed ? 'Menüschriftfarbe zurückgesetzt.' : 'Menüschriftfarbe ist bereits auf Standard.');
+    }
+
+    function setMenuItemFontSize(value, persist = false) {
+      const normalized = normalizeMenuItemFontSize(value, state.settings.menuItemFontSize);
+      const changed = state.settings.menuItemFontSize !== normalized;
+      state.settings.menuItemFontSize = normalized;
+      applySettings();
+      if (persist && changed) {
+        save();
+      }
+      return changed;
+    }
+
+    function resetMenuItemFontSize() {
+      const changed = setMenuItemFontSize(DEFAULT_SETTINGS.menuItemFontSize, true);
+      setStatus(changed ? 'Menüschriftgröße zurückgesetzt.' : 'Menüschriftgröße ist bereits auf Standard.');
     }
 
     function closeContextMenu() {
@@ -2080,7 +2266,10 @@
     function renderLinks() {
       const grouped = {};
       const categoryGroups = syncGroupOrder();
-      const widgetCards = state.widgets.map((widget) => renderWidget(widget)).join('');
+      const widgetCardsById = {};
+      for (const widget of state.widgets) {
+        widgetCardsById[widget.id] = renderWidget(widget);
+      }
 
       for (const groupName of categoryGroups) {
         grouped[groupName] = [];
@@ -2091,14 +2280,16 @@
         grouped[split.group].push(link);
       }
 
-      if (!categoryGroups.length && !widgetCards) {
+      if (!categoryGroups.length && !state.widgets.length) {
         dom.linksList.innerHTML = '<div class="empty">Noch keine Gruppen oder Widgets vorhanden. Oben auf + oder auf das Widget-Symbol klicken.</div>';
         fitViewport();
         return;
       }
 
-      const groupCards = categoryGroups.map((groupName) => {
+      const groupCardsByName = {};
+      for (const groupName of categoryGroups) {
         const groupNameEscaped = escapeHtmlClient(groupName);
+        const containerKeyEscaped = escapeHtmlClient(groupContainerKey(groupName));
         const linkItems = grouped[groupName].map((link) => {
           const iconCandidates = getIconCandidates(link.url, link.icon);
           const icon = escapeHtmlClient(iconCandidates[0] || fallbackIconDataUrl(link.name));
@@ -2118,7 +2309,7 @@
 
         const content = linkItems || '<div class="group-empty">Links hier ablegen</div>';
 
-        return '<section class="group-card" draggable="true" data-group-name="' + groupNameEscaped + '">' +
+        groupCardsByName[groupName] = '<section class="group-card" draggable="true" data-group-name="' + groupNameEscaped + '" data-container-key="' + containerKeyEscaped + '">' +
           '<header class="group-head">' +
             '<h2 class="group-title" data-group-name="' + groupNameEscaped + '" title="Doppelklick zum Umbenennen">' + groupNameEscaped + '</h2>' +
             '<div class="group-actions">' +
@@ -2128,9 +2319,21 @@
           '</header>' +
           '<div class="links" data-group-name="' + groupNameEscaped + '">' + content + '</div>' +
         '</section>';
-      }).join('');
+      }
 
-      dom.linksList.innerHTML = widgetCards + groupCards;
+      const orderedCards = syncContainerOrder()
+        .map((containerKey) => {
+          if (containerKey.startsWith('w:')) {
+            return widgetCardsById[containerKey.slice(2)] || '';
+          }
+          if (containerKey.startsWith('g:')) {
+            return groupCardsByName[containerKey.slice(2)] || '';
+          }
+          return '';
+        })
+        .join('');
+
+      dom.linksList.innerHTML = orderedCards;
 
       fitViewport();
       requestAnimationFrame(() => {
@@ -2193,12 +2396,12 @@
       return yDelta >= 0 ? 'bottom' : 'top';
     }
 
-    function moveGroup(draggedGroupName, targetGroupName, insertAfter = false) {
-      const dragged = String(draggedGroupName || '').trim();
-      const target = String(targetGroupName || '').trim();
+    function moveContainer(draggedContainerKey, targetContainerKey, insertAfter = false) {
+      const dragged = String(draggedContainerKey || '').trim();
+      const target = String(targetContainerKey || '').trim();
       if (!dragged || !target || dragged === target) return false;
 
-      const order = [...syncGroupOrder()];
+      const order = [...syncContainerOrder()];
       const fromIndex = order.indexOf(dragged);
       const targetIndex = order.indexOf(target);
       if (fromIndex === -1 || targetIndex === -1) return false;
@@ -2212,25 +2415,25 @@
 
       if (beforeOrder === order.join('\u001f')) return false;
 
-      state.groupOrder = order;
+      state.containerOrder = order;
       save();
       renderLinks();
       setStatus('Kategorie-Container verschoben.');
       return true;
     }
 
-    function moveGroupToEnd(draggedGroupName) {
-      const dragged = String(draggedGroupName || '').trim();
+    function moveContainerToEnd(draggedContainerKey) {
+      const dragged = String(draggedContainerKey || '').trim();
       if (!dragged) return false;
 
-      const order = [...syncGroupOrder()];
+      const order = [...syncContainerOrder()];
       const fromIndex = order.indexOf(dragged);
       if (fromIndex === -1) return false;
       if (fromIndex === order.length - 1) return false;
 
       order.splice(fromIndex, 1);
       order.push(dragged);
-      state.groupOrder = order;
+      state.containerOrder = order;
 
       save();
       renderLinks();
@@ -2263,7 +2466,12 @@
       state.categories = [...new Set(state.categories)];
       state.groupOrder = state.groupOrder.map((g) => (g === oldName ? nextName : g));
       state.groupOrder = [...new Set(state.groupOrder)];
+      state.containerOrder = state.containerOrder.map((key) => (
+        key === groupContainerKey(oldName) ? groupContainerKey(nextName) : key
+      ));
+      state.containerOrder = [...new Set(state.containerOrder)];
       syncGroupOrder();
+      syncContainerOrder();
 
       save();
       renderLinks();
@@ -2293,6 +2501,26 @@
       updateDataFileLabel();
       setStatus('JSON exportiert.');
     });
+    dom.menuItemTextColorInput.addEventListener('input', (event) => {
+      setMenuItemTextColor(event.target.value, true);
+    });
+    dom.menuItemTextColorInput.addEventListener('change', (event) => {
+      const changed = setMenuItemTextColor(event.target.value, false);
+      if (changed) {
+        setStatus('Menüschriftfarbe gespeichert.');
+      }
+    });
+    dom.resetMenuItemTextColorBtn.addEventListener('click', resetMenuItemTextColor);
+    dom.menuItemFontSizeInput.addEventListener('input', (event) => {
+      setMenuItemFontSize(event.target.value, true);
+    });
+    dom.menuItemFontSizeInput.addEventListener('change', (event) => {
+      const changed = setMenuItemFontSize(event.target.value, false);
+      if (changed) {
+        setStatus('Menüschriftgröße gespeichert.');
+      }
+    });
+    dom.resetMenuItemFontSizeBtn.addEventListener('click', resetMenuItemFontSize);
     dom.importFileInput.addEventListener('change', (event) => {
       void handleImportInputChange(event);
     });
@@ -2450,7 +2678,7 @@
       const linkItem = e.target.closest('.link-item');
       if (linkItem) {
         dragState.linkId = linkItem.getAttribute('data-link-id');
-        dragState.groupName = null;
+        dragState.containerKey = null;
         linkItem.classList.add('dragging');
 
         if (e.dataTransfer) {
@@ -2460,16 +2688,16 @@
         return;
       }
 
-      const groupCard = e.target.closest('.group-card');
-      if (!groupCard) return;
+      const containerCard = e.target.closest('.group-card, .widget-card');
+      if (!containerCard) return;
 
-      dragState.groupName = groupCard.getAttribute('data-group-name');
+      dragState.containerKey = containerCard.getAttribute('data-container-key');
       dragState.linkId = null;
-      groupCard.classList.add('dragging');
+      containerCard.classList.add('dragging');
 
       if (e.dataTransfer) {
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', dragState.groupName || '');
+        e.dataTransfer.setData('text/plain', dragState.containerKey || '');
       }
     });
 
@@ -2497,24 +2725,24 @@
         return;
       }
 
-      if (dragState.groupName) {
+      if (dragState.containerKey) {
         if (!dom.linksList.contains(e.target)) return;
 
         e.preventDefault();
         clearDropStyles();
 
-        const targetCard = e.target.closest('.group-card');
+        const targetCard = e.target.closest('.group-card, .widget-card');
         if (!targetCard) {
           dom.linksList.classList.add('group-drop-end');
           return;
         }
 
-        const targetGroup = targetCard.getAttribute('data-group-name') || '';
-        if (!targetGroup) {
+        const targetContainerKey = targetCard.getAttribute('data-container-key') || '';
+        if (!targetContainerKey) {
           dom.linksList.classList.add('group-drop-end');
           return;
         }
-        if (targetGroup === dragState.groupName) return;
+        if (targetContainerKey === dragState.containerKey) return;
 
         targetCard.classList.add('drag-over');
         const direction = getGroupDropDirection(e, targetCard);
@@ -2557,41 +2785,41 @@
         return;
       }
 
-      if (dragState.groupName) {
+      if (dragState.containerKey) {
         if (!dom.linksList.contains(e.target)) return;
 
         e.preventDefault();
         clearDropStyles();
 
-        const targetCard = e.target.closest('.group-card');
+        const targetCard = e.target.closest('.group-card, .widget-card');
         if (!targetCard) {
-          moveGroupToEnd(dragState.groupName);
-          dragState.groupName = null;
+          moveContainerToEnd(dragState.containerKey);
+          dragState.containerKey = null;
           clearDragStyles();
           return;
         }
 
-        const targetGroup = targetCard.getAttribute('data-group-name') || '';
-        if (!targetGroup || targetGroup === dragState.groupName) {
-          dragState.groupName = null;
+        const targetContainerKey = targetCard.getAttribute('data-container-key') || '';
+        if (!targetContainerKey || targetContainerKey === dragState.containerKey) {
+          dragState.containerKey = null;
           clearDragStyles();
           return;
         }
 
         const direction = getGroupDropDirection(e, targetCard);
         const insertAfter = direction === 'right' || direction === 'bottom';
-        const moved = moveGroup(dragState.groupName, targetGroup, insertAfter);
+        const moved = moveContainer(dragState.containerKey, targetContainerKey, insertAfter);
         if (!moved && insertAfter) {
-          moveGroupToEnd(dragState.groupName);
+          moveContainerToEnd(dragState.containerKey);
         }
-        dragState.groupName = null;
+        dragState.containerKey = null;
         clearDragStyles();
       }
     });
 
     dom.linksList.addEventListener('dragend', () => {
       dragState.linkId = null;
-      dragState.groupName = null;
+      dragState.containerKey = null;
       clearDragStyles();
     });
 
@@ -2621,6 +2849,7 @@
     });
 
     async function initApp() {
+      applySettings();
       updateDataFileLabel();
       const autoLoaded = await tryAutoLoadDefaultJson();
       if (!autoLoaded) {
