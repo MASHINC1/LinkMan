@@ -499,6 +499,124 @@
       word-break: break-word;
     }
 
+    .quick-notes-card {
+      background: linear-gradient(180deg, #181413 0%, #141111 100%);
+      border-color: #473836;
+    }
+
+    .quick-notes-card .widget-head {
+      align-items: flex-start;
+    }
+
+    .quick-notes-card .group-actions {
+      padding-top: 2px;
+    }
+
+    .quick-notes-body {
+      justify-items: stretch;
+      gap: 8px;
+    }
+
+    .quick-notes-title-input {
+      width: 100%;
+      margin: 0;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: rgba(58, 43, 39, 0.28);
+      color: #f0c8be;
+      font-family: "Orbitron", "Space Grotesk", sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .quick-notes-title-input::placeholder {
+      color: #8f6c65;
+      opacity: 1;
+    }
+
+    .quick-notes-title-input:focus {
+      border-color: rgba(255, 128, 96, 0.45);
+      background: rgba(68, 49, 45, 0.5);
+      box-shadow: 0 0 0 2px rgba(255, 109, 74, 0.16);
+    }
+
+    .quick-notes-list {
+      display: grid;
+      gap: 4px;
+    }
+
+    .quick-notes-empty {
+      margin: 0;
+      padding: 10px 12px;
+      border: 1px dashed #5d4b45;
+      border-radius: 10px;
+      color: #a88a82;
+      background: rgba(43, 31, 29, 0.34);
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .quick-note-item {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 6px;
+      align-items: center;
+      padding: 4px 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      transition: opacity 0.2s ease;
+    }
+
+    .quick-note-item:focus-within {
+      background: transparent;
+    }
+
+    .quick-note-item.is-done {
+      opacity: 0.76;
+    }
+
+    .quick-note-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .quick-note-input {
+      min-width: 0;
+      padding: 7px 9px;
+      border-radius: 8px;
+      border: 1px solid #4b3d39;
+      background: rgba(23, 18, 18, 0.88);
+      color: #f4e3dc;
+      font-size: 0.9rem;
+    }
+
+    .quick-note-input::placeholder {
+      color: #8b6e67;
+      opacity: 1;
+    }
+
+    .quick-note-item.is-done .quick-note-input {
+      color: #b89a91;
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
+    .quick-note-remove-btn {
+      flex: 0 0 auto;
+    }
+
+    .quick-note-add-btn {
+      width: 100%;
+      justify-content: center;
+      border-color: #634940;
+    }
+
     .group-head {
       display: flex;
       align-items: center;
@@ -1010,6 +1128,7 @@
 
   <div id="widgetAddMenu" class="context-menu" role="menu" aria-hidden="true">
     <button id="addClockWidgetBtn" class="context-menu-item" type="button" role="menuitem">Analoge Uhr</button>
+    <button id="addQuickNotesWidgetBtn" class="context-menu-item" type="button" role="menuitem">Quick Notes</button>
   </div>
 
   <div id="linkContextMenu" class="context-menu" role="menu" aria-hidden="true">
@@ -1018,13 +1137,15 @@
   </div>
 
   <script>
-    const FILE_SCHEMA_VERSION = 4;
+    const FILE_SCHEMA_VERSION = 5;
     const DEFAULT_FILE_NAME = 'LinkData.json';
     const LEGACY_STORAGE_KEY = 'linkman_data_v1';
     const CACHE_STORAGE_KEY = 'linkman_cache_v2';
     const AUTO_LOAD_CANDIDATE_FILES = ['LinkData.json', 'linkman-data.json', 'Linkdata1.json'];
     const FILE_PICKER_AVAILABLE = typeof window.showOpenFilePicker === 'function' && typeof window.showSaveFilePicker === 'function';
     const WIDGET_TYPE_ANALOG_CLOCK = 'analog-clock';
+    const WIDGET_TYPE_QUICK_NOTES = 'quick-notes';
+    const DEFAULT_QUICK_NOTES_TITLE = 'Quick Notes';
     const COMMON_TIME_ZONES = ['Europe/Berlin', 'UTC', 'Europe/London', 'America/New_York', 'America/Los_Angeles', 'Asia/Tokyo', 'Australia/Sydney'];
     const DEFAULT_SETTINGS = Object.freeze({
       menuItemTextColor: '#dfdfe1',
@@ -1110,6 +1231,7 @@
       widgetConfigSaveBtn: document.getElementById('widgetConfigSaveBtn'),
       widgetAddMenu: document.getElementById('widgetAddMenu'),
       addClockWidgetBtn: document.getElementById('addClockWidgetBtn'),
+      addQuickNotesWidgetBtn: document.getElementById('addQuickNotesWidgetBtn'),
       linkContextMenu: document.getElementById('linkContextMenu'),
       ctxEditLinkBtn: document.getElementById('ctxEditLinkBtn'),
       ctxDeleteLinkBtn: document.getElementById('ctxDeleteLinkBtn')
@@ -1213,19 +1335,49 @@
       return fallback;
     }
 
+    function createQuickNoteItem(rawItem = {}) {
+      if (typeof rawItem === 'string') {
+        return {
+          id: crypto.randomUUID(),
+          text: rawItem,
+          done: false
+        };
+      }
+
+      const source = rawItem && typeof rawItem === 'object' ? rawItem : {};
+      return {
+        id: String(source.id || crypto.randomUUID()),
+        text: typeof source.text === 'string' ? source.text : '',
+        done: parseWidgetBoolean(source.done, false)
+      };
+    }
+
     function normalizeWidget(rawWidget) {
       if (!rawWidget || typeof rawWidget !== 'object') return null;
       const type = String(rawWidget.type || '').trim();
-      if (type !== WIDGET_TYPE_ANALOG_CLOCK) return null;
-
-      const timezone = normalizeTimeZone(rawWidget.timezone) || getDefaultTimeZone();
-      const showSeconds = parseWidgetBoolean(rawWidget.showSeconds, true);
-      return {
-        id: String(rawWidget.id || crypto.randomUUID()),
-        type,
-        timezone,
-        showSeconds
-      };
+      if (type === WIDGET_TYPE_ANALOG_CLOCK) {
+        const timezone = normalizeTimeZone(rawWidget.timezone) || getDefaultTimeZone();
+        const showSeconds = parseWidgetBoolean(rawWidget.showSeconds, true);
+        return {
+          id: String(rawWidget.id || crypto.randomUUID()),
+          type,
+          timezone,
+          showSeconds
+        };
+      }
+      if (type === WIDGET_TYPE_QUICK_NOTES) {
+        const rawItems = Array.isArray(rawWidget.items) ? rawWidget.items : [];
+        const items = rawItems
+          .map((item) => createQuickNoteItem(item))
+          .filter(Boolean);
+        return {
+          id: String(rawWidget.id || crypto.randomUUID()),
+          type,
+          title: typeof rawWidget.title === 'string' ? rawWidget.title : DEFAULT_QUICK_NOTES_TITLE,
+          items: items.length ? items : [createQuickNoteItem()]
+        };
+      }
+      return null;
     }
 
     function applyParsedData(parsed) {
@@ -1834,6 +1986,19 @@
       setStatus('Widget hinzugefügt: Analoge Uhr');
     }
 
+    function addQuickNotesWidget() {
+      closeWidgetAddMenu();
+      state.widgets.push({
+        id: crypto.randomUUID(),
+        type: WIDGET_TYPE_QUICK_NOTES,
+        title: DEFAULT_QUICK_NOTES_TITLE,
+        items: [createQuickNoteItem()]
+      });
+      save();
+      renderLinks();
+      setStatus('Widget hinzugefügt: Quick Notes');
+    }
+
     function deleteWidget(widgetId) {
       const id = String(widgetId || '').trim();
       if (!id) return;
@@ -1963,9 +2128,44 @@
       '</section>';
     }
 
+    function renderQuickNotesWidgetCard(widget) {
+      const id = escapeHtmlClient(widget.id);
+      const title = escapeHtmlClient(widget.title || '');
+      const containerKey = escapeHtmlClient(widgetContainerKey(widget.id));
+      const items = Array.isArray(widget.items) ? widget.items : [];
+      const renderedItems = items.length
+        ? items.map((item) => {
+          const itemId = escapeHtmlClient(item.id);
+          const itemText = escapeHtmlClient(item.text || '');
+          const doneClass = item.done ? ' is-done' : '';
+          const checked = item.done ? ' checked' : '';
+          return '<div class="quick-note-item' + doneClass + '" data-note-id="' + itemId + '">' +
+            '<input class="quick-note-checkbox" type="checkbox" data-widget-id="' + id + '" data-note-id="' + itemId + '" data-no-widget-drag="true"' + checked + ' />' +
+            '<input class="quick-note-input" type="text" value="' + itemText + '" data-widget-id="' + id + '" data-note-id="' + itemId + '" data-no-widget-drag="true" draggable="false" autocomplete="off" placeholder="Eintrag notieren" />' +
+            '<button class="icon-btn group-action-btn group-delete-btn quick-note-remove-btn" type="button" draggable="false" data-widget-id="' + id + '" data-note-id="' + itemId + '" data-no-widget-drag="true" title="Eintrag löschen" aria-label="Eintrag löschen">' + ICON_TRASH + '</button>' +
+          '</div>';
+        }).join('')
+        : '<p class="quick-notes-empty">Noch keine Einträge. Füge unten deinen ersten Punkt hinzu.</p>';
+
+      return '<section class="widget-card quick-notes-card" draggable="true" data-widget-id="' + id + '" data-container-key="' + containerKey + '">' +
+        '<header class="widget-head">' +
+          '<input class="quick-notes-title-input" type="text" value="' + title + '" data-widget-id="' + id + '" data-no-widget-drag="true" draggable="false" autocomplete="off" placeholder="' + escapeHtmlClient(DEFAULT_QUICK_NOTES_TITLE) + '" aria-label="Titel Quick Notes" />' +
+          '<div class="group-actions">' +
+            '<button class="icon-btn group-action-btn group-delete-btn widget-delete-btn" type="button" data-widget-id="' + id + '" title="Widget löschen" aria-label="Widget löschen">' + ICON_TRASH + '</button>' +
+          '</div>' +
+        '</header>' +
+        '<div class="widget-body quick-notes-body">' +
+          '<div class="quick-notes-list">' + renderedItems + '</div>' +
+          '<button class="btn btn-secondary quick-note-add-btn" type="button" draggable="false" data-widget-id="' + id + '" data-no-widget-drag="true">Eintrag hinzufügen</button>' +
+        '</div>' +
+      '</section>';
+    }
+
     function renderWidget(widget) {
-      if (!widget || widget.type !== WIDGET_TYPE_ANALOG_CLOCK) return '';
-      return renderClockWidgetCard(widget);
+      if (!widget) return '';
+      if (widget.type === WIDGET_TYPE_ANALOG_CLOCK) return renderClockWidgetCard(widget);
+      if (widget.type === WIDGET_TYPE_QUICK_NOTES) return renderQuickNotesWidgetCard(widget);
+      return '';
     }
 
     function updateClockWidgets() {
@@ -2016,6 +2216,62 @@
       }
       setIconSource(dom.editorIconPreview, url, dom.editorNameInput.value || inferNameFromUrl(url));
       dom.editorIconPreview.classList.remove('icon-empty');
+    }
+
+    function getQuickNotesWidget(widgetId) {
+      const widget = getWidgetById(widgetId);
+      if (!widget || widget.type !== WIDGET_TYPE_QUICK_NOTES) return null;
+      return widget;
+    }
+
+    function getQuickNoteItem(widget, noteId) {
+      if (!widget || !Array.isArray(widget.items)) return null;
+      const id = String(noteId || '').trim();
+      if (!id) return null;
+      return widget.items.find((item) => item.id === id) || null;
+    }
+
+    function updateQuickNotesTitle(widgetId, value) {
+      const widget = getQuickNotesWidget(widgetId);
+      if (!widget) return;
+      widget.title = String(value || '');
+      save();
+    }
+
+    function updateQuickNoteText(widgetId, noteId, value) {
+      const widget = getQuickNotesWidget(widgetId);
+      const item = getQuickNoteItem(widget, noteId);
+      if (!item) return;
+      item.text = String(value || '');
+      save();
+    }
+
+    function updateQuickNoteDone(widgetId, noteId, done) {
+      const widget = getQuickNotesWidget(widgetId);
+      const item = getQuickNoteItem(widget, noteId);
+      if (!item) return;
+      item.done = !!done;
+      save();
+    }
+
+    function addQuickNoteItem(widgetId) {
+      const widget = getQuickNotesWidget(widgetId);
+      if (!widget) return;
+      widget.items.push(createQuickNoteItem());
+      save();
+      renderLinks();
+      setStatus('Eintrag hinzugefügt.');
+    }
+
+    function removeQuickNoteItem(widgetId, noteId) {
+      const widget = getQuickNotesWidget(widgetId);
+      if (!widget) return;
+      const beforeLength = widget.items.length;
+      widget.items = widget.items.filter((item) => item.id !== noteId);
+      if (widget.items.length === beforeLength) return;
+      save();
+      renderLinks();
+      setStatus('Eintrag entfernt.');
     }
 
     function clearEditorSuggestionTimer() {
@@ -2529,6 +2785,7 @@
       toggleWidgetAddMenu();
     });
     dom.addClockWidgetBtn.addEventListener('click', addClockWidget);
+    dom.addQuickNotesWidgetBtn.addEventListener('click', addQuickNotesWidget);
 
     dom.addGroupBtn.addEventListener('click', addGroup);
     dom.editorCancelBtn.addEventListener('click', closeLinkEditor);
@@ -2592,6 +2849,21 @@
         return;
       }
 
+      const quickNoteAddButton = event.target.closest('.quick-note-add-btn');
+      if (quickNoteAddButton) {
+        const widgetId = quickNoteAddButton.getAttribute('data-widget-id') || '';
+        addQuickNoteItem(widgetId);
+        return;
+      }
+
+      const quickNoteRemoveButton = event.target.closest('.quick-note-remove-btn');
+      if (quickNoteRemoveButton) {
+        const widgetId = quickNoteRemoveButton.getAttribute('data-widget-id') || '';
+        const noteId = quickNoteRemoveButton.getAttribute('data-note-id') || '';
+        removeQuickNoteItem(widgetId, noteId);
+        return;
+      }
+
       const widgetDeleteButton = event.target.closest('.widget-delete-btn');
       if (widgetDeleteButton) {
         const widgetId = widgetDeleteButton.getAttribute('data-widget-id') || '';
@@ -2610,6 +2882,36 @@
       if (deleteButton) {
         const groupName = deleteButton.getAttribute('data-group-name') || '';
         deleteGroup(groupName);
+      }
+    });
+
+    dom.linksList.addEventListener('input', (event) => {
+      const quickNotesTitleInput = event.target.closest('.quick-notes-title-input');
+      if (quickNotesTitleInput) {
+        const widgetId = quickNotesTitleInput.getAttribute('data-widget-id') || '';
+        updateQuickNotesTitle(widgetId, quickNotesTitleInput.value);
+        return;
+      }
+
+      const quickNoteInput = event.target.closest('.quick-note-input');
+      if (quickNoteInput) {
+        const widgetId = quickNoteInput.getAttribute('data-widget-id') || '';
+        const noteId = quickNoteInput.getAttribute('data-note-id') || '';
+        updateQuickNoteText(widgetId, noteId, quickNoteInput.value);
+      }
+    });
+
+    dom.linksList.addEventListener('change', (event) => {
+      const quickNoteCheckbox = event.target.closest('.quick-note-checkbox');
+      if (!quickNoteCheckbox) return;
+
+      const widgetId = quickNoteCheckbox.getAttribute('data-widget-id') || '';
+      const noteId = quickNoteCheckbox.getAttribute('data-note-id') || '';
+      updateQuickNoteDone(widgetId, noteId, quickNoteCheckbox.checked);
+
+      const noteRow = quickNoteCheckbox.closest('.quick-note-item');
+      if (noteRow) {
+        noteRow.classList.toggle('is-done', quickNoteCheckbox.checked);
       }
     });
 
@@ -2668,6 +2970,11 @@
     window.addEventListener('scroll', closeWidgetAddMenu, true);
 
     dom.linksList.addEventListener('dragstart', (e) => {
+      if (e.target.closest('[data-no-widget-drag="true"]')) {
+        e.preventDefault();
+        return;
+      }
+
       if (e.target.closest('.group-action-btn')) {
         e.preventDefault();
         return;
